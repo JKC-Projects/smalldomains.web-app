@@ -3,8 +3,8 @@ import SmallDomainInputter from './_SmallDomainInputter'
 
 
 const SmallDomainCreator = () => {
-  const [largeDomain, setLargeDomain] = React.useState('www.google.com');
-  const [disabled, setDisabled] = React.useState(false);
+  const [largeDomain, setLargeDomain] = React.useState<string>('');
+  const [disabled, setDisabled] = React.useState<boolean>(false);
   return (
     <SmallDomainInputter
       onSubmit={event => {}}

@@ -8,13 +8,13 @@
 
 .WaitingCard_Card:before {
   content: "";
-  height: 115%;
-  width: 106%;
+  height: 110%;
+  width: 106%;  /* TODO make width responsive on smaller screens */
   border-radius: 0.8rem;
   background-color: blue;
   
   position: absolute;
-  top: -7.5%;
+  top: -5%;
   left: -3%;
   z-index: -999999;
 
