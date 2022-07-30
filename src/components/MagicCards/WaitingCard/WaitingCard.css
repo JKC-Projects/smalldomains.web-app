@@ -1,0 +1,38 @@
+.WaitingCard_Card {
+  background-color: #1b1f2e;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  position: relative;
+  margin: 2rem;
+}
+
+.WaitingCard_Card:before {
+  content: "";
+  height: 115%;
+  width: 106%;
+  border-radius: 0.8rem;
+  background-color: blue;
+  
+  position: absolute;
+  top: -7.5%;
+  left: -3%;
+  z-index: -999999;
+
+  background-image: linear-gradient(var(--angle), #9c978a, #e6e0d1, #68686e);
+  animation: spin 10s linear infinite;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 145deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
