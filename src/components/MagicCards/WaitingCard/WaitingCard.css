@@ -18,8 +18,13 @@
   left: -3%;
   z-index: -999999;
 
-  background-image: linear-gradient(var(--angle), #9c978a, #e6e0d1, #68686e);
+  background-image: linear-gradient(var(--angle), #68686e, #e6e0d1, #9c978a);
   animation: spin 10s linear infinite;
+}
+
+.WaitingCard_Card:hover:before {
+  background-image: linear-gradient(var(--angle), #53ed58, #4b8e5c, #68686e);
+  animation: spin 2s linear infinite;
 }
 
 @property --angle {
