@@ -24,12 +24,12 @@
 
 .WaitingCard_Card:hover:before {
   background-image: linear-gradient(var(--angle), #53ed58, #4b8e5c, #68686e);
-  animation: spin 2s linear infinite;
+  animation: spin 5s linear infinite;
 }
 
 @property --angle {
   syntax: "<angle>";
-  initial-value: 145deg;
+  initial-value: 0deg;
   inherits: false;
 }
 
