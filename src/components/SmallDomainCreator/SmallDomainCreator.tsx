@@ -1,23 +1,37 @@
 import React from 'react'
-import { createSmallDomain } from '../../api/SmallDomainsApi';
+import { createSmallDomain } from '../../api/SmallDomainsApi'
+import { SmallDomain } from '../../types/SmallDomains'
 import WaitingCard from '../MagicCards/WaitingCard/WaitingCard'
-
 
 const SmallDomainCreator = () => {
   const [largeDomain, setLargeDomain] = React.useState<string>('');
-  const [errorMessages, setErrorMessages] = React.useState<string[]>([])
+  const [errorMessage, setErrorMessage] = React.useState<string>('')
   const [disabled, setDisabled] = React.useState<boolean>(false);
 
   const handleFormSubmission : React.FormEventHandler = event => {
     event.preventDefault()
     if(!largeDomain.trim()) {
-      setErrorMessages(["Please enter the URL you want to shorten"])
+      setErrorMessage("Please enter the URL you want to shorten")
       return
     }
 
+    const resetComponent = () => {
+      setLargeDomain('')
+      setDisabled(false)
+    }
+
+    const onSuccess = (smallDomain : SmallDomain) => {
+      resetComponent()
+    }
+
+    const onFailure = (errorMessage : string) => {
+      resetComponent()
+      setErrorMessage(errorMessage)
+    }
+
+    setErrorMessage('')
     setDisabled(true)
-    // TODO
-    createSmallDomain(largeDomain, () => {}, () => {})
+    createSmallDomain(largeDomain, onSuccess, onFailure)
   }
 
   return (

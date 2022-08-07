@@ -1,7 +1,7 @@
 import { SmallDomain } from '../types/SmallDomains'
 import FetchError from './FetchError'
 
-const API_BASE_URL : string = process.env.SMALL_DOMAINS_REST_API_BASE_URL
+const API_BASE_URL : string = process.env.REACT_APP_SMALL_DOMAINS_REST_API_BASE_URL
 const CREATE_SMALL_DOMAIN_URL : string = `${API_BASE_URL}/smalldomains`
 
 const COMMON_HEADERS = {
@@ -17,7 +17,7 @@ const COMMON_FETCH_OPTIONS : RequestInit = {
 const createSmallDomain = (
   largeDomain: string,
   successCallBack: (smallDomain: SmallDomain) => void,
-  errorCallBack: (errorMessages: string[]) => void
+  errorCallBack: (errorMessages: string) => void
 ) : void => {
   fetch(CREATE_SMALL_DOMAIN_URL, {
       ...COMMON_FETCH_OPTIONS,
@@ -30,8 +30,8 @@ const createSmallDomain = (
     .then(data => data as SmallDomain)
     .then(successCallBack)
     .catch(error => {
-      const errorMsgs = (error instanceof FetchError) ? error.getErrorMessages() : ["Error connecting to server"]
-      errorCallBack(errorMsgs)
+      const errorMsg = (error instanceof FetchError) ? error.getErrorMessage() : "There was an error when connecting to the server"
+      errorCallBack(errorMsg)
     })
 }
 
@@ -42,24 +42,14 @@ const handleErrorsIfAny = (response : Response) : Promise<Response> => {
 
   switch(response.status) {
     case 400:
-      return http400Handler(response)
+      return response.json()
+        .then(_ => { throw new FetchError("You entered an invalid URL. We can only shorten valid URLs.") })
     default:
       return response.json()
         .then(data => data.error)
-        .then(errMsg => {throw new FetchError([errMsg])} )
+        .then(errMsg => { throw new FetchError(errMsg) } )
   }
 } 
-
-const http400Handler = (response : Response) : Promise<any> => { 
-  return response.json()
-    .then(data => data.validationErrors)
-    .then(errors => errors.values() as string[][])
-    .then(errorValues => errorValues.reduce((currAccum : string[], currEl : string[]) : string[] => {
-        currAccum.push(...currEl)
-        return currAccum
-      }, []))
-    .then(errorMessages => { throw new FetchError(errorMessages) })
-}
 
 export {
   createSmallDomain

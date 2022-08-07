@@ -3,7 +3,7 @@ export {};
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      SMALL_DOMAINS_REST_API_BASE_URL: string;
+      REACT_APP_SMALL_DOMAINS_REST_API_BASE_URL: string;
     }
   }
 }

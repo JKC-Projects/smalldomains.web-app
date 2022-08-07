@@ -1,14 +1,14 @@
 class FetchError extends Error {
-  #errorMessages : string[]
+  #errorMessage : string
   
-  constructor(errorMessages : string[]) {
-    super('')
-    this.#errorMessages = errorMessages
+  constructor(errorMessage : string) {
+    super(errorMessage)
+    this.#errorMessage = errorMessage
     Object.setPrototypeOf(this, FetchError.prototype)
   }
 
-  getErrorMessages() : string[] {
-    return this.#errorMessages
+  getErrorMessage() : string {
+    return this.#errorMessage
   }
 }
 
