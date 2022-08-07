@@ -1,23 +1,4 @@
-.WaitingCard_Card {
-  background-color: #1b1f2e;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  position: relative;
-  margin: 2rem;
-}
-
 .WaitingCard_Card:before {
-  content: "";
-  height: 110%;
-  width: 106%;  /* TODO make width responsive on smaller screens */
-  border-radius: 0.8rem;
-  background-color: blue;
-  
-  position: absolute;
-  top: -5%;
-  left: -3%;
-  z-index: -999999;
-
   background-image: linear-gradient(var(--angle), #68686e, #e6e0d1, #9c978a);
   animation: spin 10s linear infinite;
 }

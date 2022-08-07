@@ -1,7 +1,7 @@
 import React from 'react'
 import { createSmallDomain } from '../../api/SmallDomainsApi'
 import { SmallDomain } from '../../types/SmallDomains'
-import WaitingCard from '../MagicCards/WaitingCard/WaitingCard'
+import { WaitingCard } from '../MagicCards'
 
 const SmallDomainCreator = () => {
   const [largeDomain, setLargeDomain] = React.useState<string>('');

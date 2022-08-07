@@ -1,5 +1,5 @@
 import React from 'react'
-import WaitingCard from '../MagicCards/WaitingCard/WaitingCard'
+import WaitingCard from '../MagicCards/WaitingCard/_WaitingCard'
 
 interface IProps {
   largeDomain : string
