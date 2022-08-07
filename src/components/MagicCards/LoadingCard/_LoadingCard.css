@@ -1,0 +1,19 @@
+.LoadingCard_Card:before {
+  background-image: linear-gradient(var(--angle), #5ab5af, #5a95b5 20%, #1b10e8, #625bea);
+  animation: spin 1.5s linear infinite;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
