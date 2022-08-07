@@ -6,6 +6,6 @@ interface IProps {
   children : React.ReactNode
 }
 
-const WaitingCard : React.FC<IProps> = ({children}) => <div className="BaseCard_Card WaitingCard_Card">{ children }</div>
+const _WaitingCard : React.FC<IProps> = ({children}) => <div className="BaseCard_Card WaitingCard_Card">{ children }</div>
 
-export default WaitingCard;
+export default _WaitingCard;

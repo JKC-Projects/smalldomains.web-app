@@ -1,5 +1,1 @@
-import WaitingCard from './WaitingCard/_WaitingCard'
-
-export {
-  WaitingCard
-}
+export { default as WaitingCard } from './WaitingCard/_WaitingCard'
