@@ -16,11 +16,11 @@ const useSmallDomainCreation = () => {
     setLargeDomain('')
     setIsLoading(false)
     setDisabled(false)
+    setErrorMessage(null)
   }
 
   const onSuccess = (smallDomain : SmallDomain) => {
     resetComponent()
-    setErrorMessage(null)
   }
 
   const onFailure = (errorMessage : string) => {
@@ -34,13 +34,13 @@ const useSmallDomainCreation = () => {
       return
     }
 
+    setHasBeenUsedAtLeastOnce(true)
     setErrorMessage(null)
     setIsLoading(true)
     setDisabled(true)
-    const RESET_DELAY_MILLIS = 500
     createSmallDomain(largeDomain,
-      () => setTimeout(onSuccess, RESET_DELAY_MILLIS), 
-      () => setTimeout(onFailure, RESET_DELAY_MILLIS)
+      (smallDomain : SmallDomain) => setTimeout(() => onSuccess(smallDomain), 500), 
+      (errorMessage : string) => setTimeout(() => onFailure(errorMessage), 200)
     )
   }
 

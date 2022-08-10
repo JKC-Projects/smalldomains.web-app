@@ -17,7 +17,7 @@ const COMMON_FETCH_OPTIONS : RequestInit = {
 const createSmallDomain = (
   largeDomain: string,
   successCallBack: (smallDomain: SmallDomain) => void,
-  errorCallBack: (errorMessages: string) => void
+  errorCallBack: (errorMessage: string) => void
 ) : void => {
   fetch(CREATE_SMALL_DOMAIN_URL, {
       ...COMMON_FETCH_OPTIONS,

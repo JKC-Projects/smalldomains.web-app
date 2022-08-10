@@ -6,6 +6,6 @@ interface IProps {
   children : React.ReactNode
 }
 
-const _SuccessCard : React.FC<IProps> = ({children}) => <div className="BaseCard_Card Success_Card">{ children }</div>
+const _SuccessCard : React.FC<IProps> = ({children}) => <div className="BaseCard_Card SuccessCard_Card">{ children }</div>
 
 export default _SuccessCard;
