@@ -1,16 +1,17 @@
 import React from 'react'
 import { createSmallDomain } from '../../api/SmallDomainsApi'
 import { SmallDomain } from '../../types/SmallDomains'
-import { ErrorCard, LoadingCard, WaitingCard } from '../MagicCards'
+import ErrorMessage from '../ErrorMessage/ErrorMessage'
+import { SuccessCard, ErrorCard, LoadingCard, WaitingCard } from '../MagicCards'
 import SmallDomainForm from './SmallDomainForm'
 
-const useSmallDomainCreationSubmission = () => {
+const useSmallDomainCreation = () => {
+  const [ hasBeenUsedAtLeastOnce, setHasBeenUsedAtLeastOnce] = React.useState<boolean>(false)
   const [largeDomain, setLargeDomain] = React.useState<string>('')
-  const [errorMessage, setErrorMessage] = React.useState<string>('')
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null)
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [disabled, setDisabled] = React.useState<boolean>(false);
 
-  const RESET_DELAY_MILLIS = 1200;
   const resetComponent = () => {
     setLargeDomain('')
     setIsLoading(false)
@@ -18,11 +19,12 @@ const useSmallDomainCreationSubmission = () => {
   }
 
   const onSuccess = (smallDomain : SmallDomain) => {
-    setTimeout(resetComponent, RESET_DELAY_MILLIS) // delay things for a while... let the user see the pretty loading animation :)
+    resetComponent()
+    setErrorMessage(null)
   }
 
   const onFailure = (errorMessage : string) => {
-    setTimeout(resetComponent, RESET_DELAY_MILLIS) // delay things for a while... let the user see the pretty loading animation :)
+    resetComponent()
     setErrorMessage(errorMessage)
   }
 
@@ -32,13 +34,18 @@ const useSmallDomainCreationSubmission = () => {
       return
     }
 
-    setErrorMessage('')
+    setErrorMessage(null)
     setIsLoading(true)
     setDisabled(true)
-    createSmallDomain(largeDomain, onSuccess, onFailure)
+    const RESET_DELAY_MILLIS = 500
+    createSmallDomain(largeDomain,
+      () => setTimeout(onSuccess, RESET_DELAY_MILLIS), 
+      () => setTimeout(onFailure, RESET_DELAY_MILLIS)
+    )
   }
 
   return {
+    hasBeenUsedAtLeastOnce,
     largeDomain, setLargeDomain,
     errorMessage,
     isLoading,
@@ -49,19 +56,28 @@ const useSmallDomainCreationSubmission = () => {
 
 const SmallDomainCreator = () => {
   const {
+    hasBeenUsedAtLeastOnce,
     largeDomain, setLargeDomain,
     errorMessage,
     isLoading,
     disabled,
     doSubmit
-  } = useSmallDomainCreationSubmission();
+  } = useSmallDomainCreation();
 
-  const children = <SmallDomainForm largeDomain={largeDomain} onLargeDomainChange={setLargeDomain} onSubmit={doSubmit} disabled={disabled} />
+  const children = <SmallDomainForm
+    largeDomain={largeDomain}
+    onLargeDomainChange={setLargeDomain}
+    onSubmit={doSubmit}
+    disabled={disabled}
+    errorMessage={errorMessage}
+  />
 
   if (isLoading) {
     return <LoadingCard>{ children }</LoadingCard>  
-  } else if (errorMessage !== '') {
+  } else if (errorMessage !== null) {
     return <ErrorCard>{ children }</ErrorCard>
+  } else if (hasBeenUsedAtLeastOnce) {
+    return <SuccessCard>{ children }</SuccessCard>
   } else {
     return <WaitingCard>{ children }</WaitingCard>
   }

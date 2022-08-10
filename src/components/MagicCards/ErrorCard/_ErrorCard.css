@@ -1,9 +1,4 @@
 .ErrorCard_Card:before {
-  background-image: linear-gradient(var(--angle), #68686e, #e6e0d1, #9c978a);
-  animation: spin 10s linear infinite;
-}
-
-.ErrorCard_Card:hover:before {
   background-image: linear-gradient(var(--angle), #c18672 10%, #e83737, #f70909);
   animation: spin 5s linear infinite;
 }

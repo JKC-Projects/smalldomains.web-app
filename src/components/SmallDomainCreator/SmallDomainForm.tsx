@@ -1,23 +1,26 @@
 import React from 'react'
+import ErrorMessage from '../ErrorMessage/ErrorMessage'
 
 interface IProps {
   largeDomain : string,
-  onLargeDomainChange : (newLargeDomain : string) => void
+  onLargeDomainChange : (newLargeDomain : string) => void,
   onSubmit : () => void,
-  disabled : boolean
+  disabled : boolean,
+  errorMessage : string | null
 }
 
 const SmallDomainForm : React.FC<IProps> = ({
   largeDomain,
   onLargeDomainChange,
   onSubmit,
-  disabled
+  disabled,
+  errorMessage
 }) => {
   const handleFormSubmission : React.FormEventHandler = event => {
     event.preventDefault()
     onSubmit()
   }
-  
+
   return (
     <article className="text-left prose prose-stone dark:prose-invert">
       <h3 className="font-normal m-0 mb-3">Do the magic... make your SmallDomain</h3>
@@ -37,6 +40,13 @@ const SmallDomainForm : React.FC<IProps> = ({
           Shorten URL
         </button>
       </form>
+      { 
+        errorMessage !== null && 
+        <>
+          <hr className="mt-7 mb-7"/>
+          <ErrorMessage>{ errorMessage }</ErrorMessage>
+        </>
+      }
   </article>
   )
 }
