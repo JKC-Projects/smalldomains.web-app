@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { addListenerOfLocallyStoredSmallDomains, storeNewSmallDomain } from '../../api/LocallyStoredSmallDomains'
 import { createSmallDomain } from '../../api/SmallDomainsApi'
 import { SmallDomain } from '../../types/SmallDomains'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
@@ -6,11 +7,11 @@ import { SuccessCard, ErrorCard, LoadingCard, WaitingCard } from '../MagicCards'
 import SmallDomainForm from './SmallDomainForm'
 
 const useSmallDomainCreation = () => {
-  const [ hasBeenUsedAtLeastOnce, setHasBeenUsedAtLeastOnce] = React.useState<boolean>(false)
+  const [hasBeenUsedAtLeastOnce, setHasBeenUsedAtLeastOnce] = React.useState<boolean>(false)
   const [largeDomain, setLargeDomain] = React.useState<string>('')
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null)
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [disabled, setDisabled] = React.useState<boolean>(false);
+  const [disabled, setDisabled] = React.useState<boolean>(false)
 
   const resetComponent = () => {
     setLargeDomain('')
@@ -21,6 +22,7 @@ const useSmallDomainCreation = () => {
 
   const onSuccess = (smallDomain : SmallDomain) => {
     resetComponent()
+    storeNewSmallDomain(smallDomain)
   }
 
   const onFailure = (errorMessage : string) => {
