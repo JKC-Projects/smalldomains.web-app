@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
-import { addListenerOfLocallyStoredSmallDomains, storeNewSmallDomain } from '../../api/LocallyStoredSmallDomains'
+import { storeNewSmallDomain } from '../../api/LocallyStoredSmallDomains'
 import { createSmallDomain } from '../../api/SmallDomainsApi'
 import { SmallDomain } from '../../types/SmallDomains'
-import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import { SuccessCard, ErrorCard, LoadingCard, WaitingCard } from '../MagicCards'
 import SmallDomainForm from './SmallDomainForm'
 
@@ -66,13 +65,15 @@ const SmallDomainCreator = () => {
     doSubmit
   } = useSmallDomainCreation();
 
-  const children = <SmallDomainForm
-    largeDomain={largeDomain}
-    onLargeDomainChange={setLargeDomain}
-    onSubmit={doSubmit}
-    disabled={disabled}
-    errorMessage={errorMessage}
-  />
+  const children = <div className="w-[70vw]">
+    <SmallDomainForm
+      largeDomain={largeDomain}
+      onLargeDomainChange={setLargeDomain}
+      onSubmit={doSubmit}
+      disabled={disabled}
+      errorMessage={errorMessage}
+    />
+  </div>
 
   if (isLoading) {
     return <LoadingCard>{ children }</LoadingCard>  
