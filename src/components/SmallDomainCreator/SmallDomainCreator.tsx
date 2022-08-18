@@ -65,7 +65,7 @@ const SmallDomainCreator = () => {
     doSubmit
   } = useSmallDomainCreation();
 
-  const children = <div className="w-[70vw]">
+  const children = <div className="">
     <SmallDomainForm
       largeDomain={largeDomain}
       onLargeDomainChange={setLargeDomain}
