@@ -1,0 +1,20 @@
+.PageList {
+  --border-radius: 0.7rem;
+}
+
+.PageList li:first-child > div {
+
+
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.PageList li + li > div {
+  border-top-style: none;
+}
+
+.PageList li:last-child > div {
+
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}

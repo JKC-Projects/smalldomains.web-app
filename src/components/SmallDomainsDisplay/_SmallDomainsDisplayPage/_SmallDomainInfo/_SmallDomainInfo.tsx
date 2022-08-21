@@ -1,6 +1,8 @@
 import React from 'react'
-import { SmallDomain } from '../../types/SmallDomains'
+import { SmallDomain } from '../../../../types/SmallDomains'
 import { ArrowRightIcon } from '@heroicons/react/outline'
+
+import './_SmallDomainInfo.css'
 
 const FRIENDLY_FORWARDER_URL : string = process.env.REACT_APP_SMALL_DOMAINS_FORWARDER_USER_FRIENDLY_URL
 
@@ -18,19 +20,19 @@ const getExpiryString = (smallDomain: SmallDomain) => {
 }
 
 interface IProps {
-
+  smallDomainObj : SmallDomain
 }
 
-const SmallDomainsDisplay : React.FC<IProps> = () => {
-  const {
-    smallDomain,
-    largeDomain,
-    createdAt,
-    expiringAt
-  } = sampleData;
-  
+const SmallDomainInfo : React.FC<IProps> = (props) => {
+const {
+  smallDomain,
+  largeDomain,
+  createdAt,
+  expiringAt
+} = props.smallDomainObj
+
   return (
-    <div className="bg-amber-200 border-4 border-orange-600 w-[70vw] p-5 rounded-md">
+    <div className="SmallDomainInfo w-[70vw] p-5">
       <div>
         <a href={`https://${FRIENDLY_FORWARDER_URL}/${smallDomain}`}>{ `${FRIENDLY_FORWARDER_URL}/${smallDomain}` }</a>
       </div>
@@ -40,11 +42,11 @@ const SmallDomainsDisplay : React.FC<IProps> = () => {
           <p className="inline">{ largeDomain }</p>
         </div>
         <div>
-          <p className="inline">{ `expires ${getExpiryString(sampleData)}` }</p>
+          <p className="inline">{ `expires ${getExpiryString(props.smallDomainObj)}` }</p>
         </div>
       </div>
     </div>
   )
 }
 
-export default SmallDomainsDisplay
+export default SmallDomainInfo
