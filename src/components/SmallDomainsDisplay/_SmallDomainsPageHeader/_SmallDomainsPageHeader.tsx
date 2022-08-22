@@ -47,9 +47,9 @@ const _SmallDomainsPageHeader : React.FC<IProps> = ({
     </article>
     <article className={`${commonTailWindArticle}`}>
       <>
-        { withDynamicism(ChevronLeftIcon, true, () => {}) }
+        { withDynamicism(ChevronLeftIcon, prevPageEnabled, onPrevPageClicked) }
         <p className="text-xl inline">{ `${currPage} / ${lastPage}` }</p>
-        { withDynamicism(ChevronRightIcon, false, () => {}) }
+        { withDynamicism(ChevronRightIcon, nextPageEnabled, onNextPageClicked) }
       </>
     </article>
   </div>

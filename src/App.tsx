@@ -6,23 +6,77 @@ import SmallDomainsDisplay from './components/SmallDomainsDisplay/SmallDomainsDi
 
 const sampleData : SmallDomain[] = [
   {
-  "smallDomain": "0awieTa",
+  "smallDomain": "1",
   "largeDomain": "https://google.com",
   "createdAt": 1660736048,
   "expiringAt": 1692272048
   },
   {
-    "smallDomain": "999999",
+    "smallDomain": "2",
     "largeDomain": "https://google.com",
     "createdAt": 1660736048,
     "expiringAt": 1692272048
   },
   {
-    "smallDomain": "999991",
+    "smallDomain": "3",
     "largeDomain": "https://google.com",
     "createdAt": 1660736048,
     "expiringAt": 1692272048
-  }
+  },
+  {
+    "smallDomain": "4",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
+    },
+    {
+      "smallDomain": "5",
+      "largeDomain": "https://google.com",
+      "createdAt": 1660736048,
+      "expiringAt": 1692272048
+    },
+    {
+      "smallDomain": "6",
+      "largeDomain": "https://google.com",
+      "createdAt": 1660736048,
+      "expiringAt": 1692272048
+    },
+    {
+      "smallDomain": "7",
+      "largeDomain": "https://google.com",
+      "createdAt": 1660736048,
+      "expiringAt": 1692272048
+      },
+      {
+        "smallDomain": "8",
+        "largeDomain": "https://google.com",
+        "createdAt": 1660736048,
+        "expiringAt": 1692272048
+      },
+      {
+        "smallDomain": "9",
+        "largeDomain": "https://google.com",
+        "createdAt": 1660736048,
+        "expiringAt": 1692272048
+      },
+      {
+        "smallDomain": "10",
+        "largeDomain": "https://google.com",
+        "createdAt": 1660736048,
+        "expiringAt": 1692272048
+        },
+        {
+          "smallDomain": "11",
+          "largeDomain": "https://google.com",
+          "createdAt": 1660736048,
+          "expiringAt": 1692272048
+        },
+        {
+          "smallDomain": "12",
+          "largeDomain": "https://google.com",
+          "createdAt": 1660736048,
+          "expiringAt": 1692272048
+        }
 ]
 
 function App() {
