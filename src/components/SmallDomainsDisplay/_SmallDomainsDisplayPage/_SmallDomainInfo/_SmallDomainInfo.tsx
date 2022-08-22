@@ -6,13 +6,6 @@ import './_SmallDomainInfo.css'
 
 const FRIENDLY_FORWARDER_URL : string = process.env.REACT_APP_SMALL_DOMAINS_FORWARDER_USER_FRIENDLY_URL
 
-const sampleData : SmallDomain = {
-  "smallDomain": "0awieTa",
-  "largeDomain": "https://google.com",
-  "createdAt": 1660736048,
-  "expiringAt": 1692272048
-}
-
 const getExpiryString = (smallDomain: SmallDomain) => {
   const stringifyDate = (d: Date) : string => `${d.toLocaleString('default', {month: 'long'})} ${d.getDay()}, ${d.getFullYear()} | ${d.getHours()}:${d.getMinutes()}`
   const date = new Date(smallDomain.expiringAt * 1000)
@@ -23,7 +16,7 @@ interface IProps {
   smallDomainObj : SmallDomain
 }
 
-const SmallDomainInfo : React.FC<IProps> = (props) => {
+const _SmallDomainInfo : React.FC<IProps> = (props) => {
 const {
   smallDomain,
   largeDomain,
@@ -38,7 +31,7 @@ const {
       </div>
       <div className="flex justify-between">
         <div className="inline-block">
-          <ArrowRightIcon className="h-3 w-3 mr-1 inline align-middle"/>
+          <ArrowRightIcon className="h-3 w-3 mr-1 inline"/>
           <p className="text-sm inline">{ largeDomain }</p>
         </div>
         <div>
@@ -49,4 +42,4 @@ const {
   )
 }
 
-export default SmallDomainInfo
+export default _SmallDomainInfo
