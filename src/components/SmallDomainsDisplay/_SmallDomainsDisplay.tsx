@@ -3,14 +3,14 @@ import { default as usePages } from './_usePages'
 import { default as SmallDomainsDisplayPage } from './_SmallDomainsDisplayPage/_SmallDomainsDisplayPage'
 import { default as SmallDomainsPageHeader } from './_SmallDomainsPageHeader/_SmallDomainsPageHeader'
 
-import { SmallDomain } from './../../types/SmallDomains'
+import { SmallDomain } from '../../types/SmallDomains'
 
 interface IProps {
   smallDomains : SmallDomain[]
   noDomainsPerPage? : number
 }
 
-const SmallDomainsDisplay : React.FC<IProps> = ({
+const _SmallDomainsDisplay : React.FC<IProps> = ({
   smallDomains,
   noDomainsPerPage = 5
 }) => {
@@ -30,4 +30,4 @@ const SmallDomainsDisplay : React.FC<IProps> = ({
   </div>
 }
 
-export default SmallDomainsDisplay
+export default _SmallDomainsDisplay

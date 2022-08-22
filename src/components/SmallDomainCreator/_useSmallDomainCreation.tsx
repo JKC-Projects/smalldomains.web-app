@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { storeNewSmallDomain } from '../../api/LocallyStoredSmallDomains'
 import { createSmallDomain } from '../../api/SmallDomainsApi'
 import { SmallDomain } from '../../types/SmallDomains'
-import { SuccessCard, ErrorCard, LoadingCard, WaitingCard } from '../MagicCards'
-import SmallDomainForm from './SmallDomainForm'
 
-const useSmallDomainCreation = () => {
+const _useSmallDomainCreation = () => {
   const [hasBeenUsedAtLeastOnce, setHasBeenUsedAtLeastOnce] = React.useState<boolean>(false)
   const [largeDomain, setLargeDomain] = React.useState<string>('')
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null)
@@ -55,35 +53,4 @@ const useSmallDomainCreation = () => {
   }
 }
 
-const SmallDomainCreator = () => {
-  const {
-    hasBeenUsedAtLeastOnce,
-    largeDomain, setLargeDomain,
-    errorMessage,
-    isLoading,
-    disabled,
-    doSubmit
-  } = useSmallDomainCreation();
-
-  const children = <div className="">
-    <SmallDomainForm
-      largeDomain={largeDomain}
-      onLargeDomainChange={setLargeDomain}
-      onSubmit={doSubmit}
-      disabled={disabled}
-      errorMessage={errorMessage}
-    />
-  </div>
-
-  if (isLoading) {
-    return <LoadingCard>{ children }</LoadingCard>  
-  } else if (errorMessage !== null) {
-    return <ErrorCard>{ children }</ErrorCard>
-  } else if (hasBeenUsedAtLeastOnce) {
-    return <SuccessCard>{ children }</SuccessCard>
-  } else {
-    return <WaitingCard>{ children }</WaitingCard>
-  }
-}
-
-export default SmallDomainCreator;
+export default _useSmallDomainCreation

@@ -1,15 +1,15 @@
 import React from 'react'
 import { SmallDomain } from './types/SmallDomains'
 import Header from './components/Header/Header'
-import SmallDomainCreator from './components/SmallDomainCreator/SmallDomainCreator'
-import SmallDomainsDisplay from './components/SmallDomainsDisplay/SmallDomainsDisplay'
+import SmallDomainCreator from './components/SmallDomainCreator/_SmallDomainCreator'
+import SmallDomainsDisplay from './components/SmallDomainsDisplay'
 
 const sampleData : SmallDomain[] = [
   {
-  "smallDomain": "1",
-  "largeDomain": "https://google.com",
-  "createdAt": 1660736048,
-  "expiringAt": 1692272048
+    "smallDomain": "1",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
   },
   {
     "smallDomain": "2",
@@ -28,55 +28,55 @@ const sampleData : SmallDomain[] = [
     "largeDomain": "https://google.com",
     "createdAt": 1660736048,
     "expiringAt": 1692272048
+  },
+  {
+    "smallDomain": "5",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
+  },
+  {
+    "smallDomain": "6",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
+  },
+  {
+    "smallDomain": "7",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
     },
-    {
-      "smallDomain": "5",
-      "largeDomain": "https://google.com",
-      "createdAt": 1660736048,
-      "expiringAt": 1692272048
-    },
-    {
-      "smallDomain": "6",
-      "largeDomain": "https://google.com",
-      "createdAt": 1660736048,
-      "expiringAt": 1692272048
-    },
-    {
-      "smallDomain": "7",
-      "largeDomain": "https://google.com",
-      "createdAt": 1660736048,
-      "expiringAt": 1692272048
-      },
-      {
-        "smallDomain": "8",
-        "largeDomain": "https://google.com",
-        "createdAt": 1660736048,
-        "expiringAt": 1692272048
-      },
-      {
-        "smallDomain": "9",
-        "largeDomain": "https://google.com",
-        "createdAt": 1660736048,
-        "expiringAt": 1692272048
-      },
-      {
-        "smallDomain": "10",
-        "largeDomain": "https://google.com",
-        "createdAt": 1660736048,
-        "expiringAt": 1692272048
-        },
-        {
-          "smallDomain": "11",
-          "largeDomain": "https://google.com",
-          "createdAt": 1660736048,
-          "expiringAt": 1692272048
-        },
-        {
-          "smallDomain": "12",
-          "largeDomain": "https://google.com",
-          "createdAt": 1660736048,
-          "expiringAt": 1692272048
-        }
+  {
+    "smallDomain": "8",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
+  },
+  {
+    "smallDomain": "9",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
+  },
+  {
+    "smallDomain": "10",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
+  },
+  {
+    "smallDomain": "11",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
+  },
+  {
+    "smallDomain": "12",
+    "largeDomain": "https://google.com",
+    "createdAt": 1660736048,
+    "expiringAt": 1692272048
+  }
 ]
 
 function App() {

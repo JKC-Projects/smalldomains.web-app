@@ -9,7 +9,7 @@ interface IProps {
   errorMessage : string | null
 }
 
-const SmallDomainForm : React.FC<IProps> = ({
+const _SmallDomainForm : React.FC<IProps> = ({
   largeDomain,
   onLargeDomainChange,
   onSubmit,
@@ -51,4 +51,4 @@ const SmallDomainForm : React.FC<IProps> = ({
   )
 }
 
-export default SmallDomainForm
+export default _SmallDomainForm
