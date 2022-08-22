@@ -32,14 +32,14 @@ const {
 } = props.smallDomainObj
 
   return (
-    <div className="SmallDomainInfo w-[70vw] p-5">
+    <div className="SmallDomainInfo p-5">
       <div>
-        <a href={`https://${FRIENDLY_FORWARDER_URL}/${smallDomain}`}>{ `${FRIENDLY_FORWARDER_URL}/${smallDomain}` }</a>
+        <u><a className="text-lg text-blue-900" href={`https://${FRIENDLY_FORWARDER_URL}/${smallDomain}`}>{ `${FRIENDLY_FORWARDER_URL}/${smallDomain}` }</a></u>
       </div>
       <div className="flex justify-between">
         <div className="inline-block">
-          <ArrowRightIcon className="h-5 w-5 mr-3 inline align-middle"/>
-          <p className="inline">{ largeDomain }</p>
+          <ArrowRightIcon className="h-3 w-3 mr-1 inline align-middle"/>
+          <p className="text-sm inline">{ largeDomain }</p>
         </div>
         <div>
           <p className="inline">{ `expires ${getExpiryString(props.smallDomainObj)}` }</p>

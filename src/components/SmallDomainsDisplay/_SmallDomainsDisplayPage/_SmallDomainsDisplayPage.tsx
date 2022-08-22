@@ -8,13 +8,20 @@ interface IProps {
 }
 
 const _SmallDomainsDisplayPage : React.FC<IProps> = (props) => {
-  return <ul className="PageList">
-    { 
-      props.smallDomains.map(sd => <li key={sd.smallDomain}>
-        <SmallDomainInfo smallDomainObj={sd} />
-      </li>)
-    }
-  </ul>
+  return <div className="w-[70vw]">
+      <div className="PageHeader">
+      <article className="text-left prose prose-zinc dark:prose-invert p-3">
+        <h2 className="font-normal">Your Small Domains</h2>
+      </article>
+      </div>
+      <ul className="PageList">
+      { 
+        props.smallDomains.map(sd => <li key={sd.smallDomain}>
+          <SmallDomainInfo smallDomainObj={sd} />
+        </li>)
+      }
+    </ul>
+</div>
 }
 
 export default _SmallDomainsDisplayPage

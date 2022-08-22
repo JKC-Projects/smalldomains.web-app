@@ -1,6 +1,10 @@
 .SmallDomainInfo {
-  background-color: rgb(253 230 138);
-  border-color: rgb(234 88 12);
+--border-width: 2px;
+
+  background-color: rgb(203 213 225);
+  border-color: rgb(148 163 184);
   border-style: solid;
-  border-width: 3px
+  border-top-width: var(--border-width);
+  border-bottom-width: var(--border-width);
+  width: 100%;
 }
