@@ -23,7 +23,11 @@ const _usePages = <T,>(
   const [currElements, setCurrElements] = React.useState<T[]>(getCurrElements())
   React.useEffect(() => setCurrElements(getCurrElements()), [currPage])
 
-  const lastPage = Math.ceil(elements.length / noElementsPerPage)
+  const lastPage : number = function() {
+    const possibleLastPage = Math.ceil(elements.length / noElementsPerPage)
+    return possibleLastPage === 0 ? 1 : possibleLastPage 
+  }()
+  
   const canGoToPrevPage = currPage !== 1 
   const canGoToNextPage = currPage !== lastPage 
 

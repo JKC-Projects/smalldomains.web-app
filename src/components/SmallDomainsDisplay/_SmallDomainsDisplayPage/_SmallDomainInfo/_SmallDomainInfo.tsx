@@ -7,7 +7,7 @@ import './_SmallDomainInfo.css'
 const FRIENDLY_FORWARDER_URL : string = process.env.REACT_APP_SMALL_DOMAINS_FORWARDER_USER_FRIENDLY_URL
 
 const getExpiryString = (smallDomain: SmallDomain) => {
-  const stringifyDate = (d: Date) : string => `${d.toLocaleString('default', {month: 'long'})} ${d.getDay()}, ${d.getFullYear()} | ${d.getHours()}:${d.getMinutes()}`
+  const stringifyDate = (d: Date) : string => `${d.toLocaleString('default', {month: 'long'})} ${d.getDate()}, ${d.getFullYear()} | ${d.getHours()}:${d.getMinutes()}`
   const date = new Date(smallDomain.expiringAt * 1000)
   return stringifyDate(date)
 }
