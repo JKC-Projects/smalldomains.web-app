@@ -15,7 +15,7 @@ const _SmallDomainsDisplay : React.FC<IProps> = ({
   noDomainsPerPage = 5
 }) => {
   const {
-    currElements,
+    getCurrElements,
     currPage,
     lastPage,
     canGoToPrevPage,
@@ -26,7 +26,7 @@ const _SmallDomainsDisplay : React.FC<IProps> = ({
 
   return <div>
     <SmallDomainsPageHeader currPage={currPage} lastPage={lastPage} prevPageEnabled={canGoToPrevPage} nextPageEnabled={canGoToNextPage} onPrevPageClicked={goToPrevPage} onNextPageClicked={goToNextPage}/>
-    <SmallDomainsDisplayPage smallDomains={currElements}/>
+    <SmallDomainsDisplayPage smallDomains={getCurrElements(smallDomains, currPage)}/>
   </div>
 }
 

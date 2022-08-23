@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface PagesReturnType<T> {
-  currElements : T[],
+  getCurrElements : (elements : T[], currPages : number) => T[],
   currPage : number,
   lastPage : number,
   canGoToPrevPage : boolean,
@@ -15,13 +15,10 @@ const _usePages = <T,>(
   noElementsPerPage : number
 ) : PagesReturnType<T> => {
   const [currPage, setCurrPage] = React.useState(1)
-  const getCurrElements = () : T[] => {
+  const getCurrElements = (elements : T[], currPage : number) : T[] => {
     const indexOfFirstCurrElement = noElementsPerPage * (currPage - 1)
     return elements.slice(indexOfFirstCurrElement, indexOfFirstCurrElement + noElementsPerPage)
   }
-
-  const [currElements, setCurrElements] = React.useState<T[]>(getCurrElements())
-  React.useEffect(() => setCurrElements(getCurrElements()), [currPage])
 
   const lastPage : number = function() {
     const possibleLastPage = Math.ceil(elements.length / noElementsPerPage)
@@ -44,7 +41,7 @@ const _usePages = <T,>(
   }
 
   return {
-    currElements,
+    getCurrElements,
     currPage,
     lastPage,
     canGoToPrevPage,

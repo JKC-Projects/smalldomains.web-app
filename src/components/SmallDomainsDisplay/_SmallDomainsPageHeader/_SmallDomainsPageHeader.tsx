@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { default as ButtonifiedElement } from './_ButtonifiedElement/_ButtonifiedElement'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 
 import './_SmallDomainsPageHeader.css'
@@ -13,25 +14,6 @@ interface IProps {
   onNextPageClicked : () => void
 }
 
-const withDynamicism : (
-  ChevronIcon : (props: React.ComponentProps<'svg'>) => JSX.Element,
-  enabled : boolean,
-  onClick : () => void
-) => JSX.Element = (
-  ChevronIcon,
-  enabled,
-  onClick
-) => {
-  const commonClasses = "h-5 w-5 inline"
-  const classesWhenEnabled = "hover:cursor-pointer"
-  const classesWhenDisabled = "hover:cursor-not-allowed text-gray-600"
-
-  return <ChevronIcon
-    className={`${commonClasses} ${enabled ? classesWhenEnabled : classesWhenDisabled}`}
-    onClick={enabled ? () => onClick() : () => {}} 
-  />
-}
-
 const _SmallDomainsPageHeader : React.FC<IProps> = ({
   currPage,
   lastPage,
@@ -40,19 +22,24 @@ const _SmallDomainsPageHeader : React.FC<IProps> = ({
   onPrevPageClicked,
   onNextPageClicked
 }) => {
-  const commonTailWindArticle = "text-left prose prose-zinc dark:prose-invert"
+  const commonIconClasses = "h-5 w-5 inline"
+  const commonArticleClasses = "text-left prose prose-zinc dark:prose-invert"
   return <div className="PageHeader flex justify-between items-center p-3">
-    <article className={commonTailWindArticle}>
+    <article className={commonArticleClasses}>
       <h2 className="font-normal">Your Small Domains</h2>
     </article>
-    <article className={`${commonTailWindArticle}`}>
-      <>
-        { withDynamicism(ChevronLeftIcon, prevPageEnabled, onPrevPageClicked) }
-        <p className="text-xl inline">{ `${currPage} / ${lastPage}` }</p>
-        { withDynamicism(ChevronRightIcon, nextPageEnabled, onNextPageClicked) }
-      </>
+    <article className={`${commonArticleClasses}`}>
+      <ButtonifiedElement enabled={prevPageEnabled} onClick={onPrevPageClicked}>
+        <ChevronLeftIcon className={commonIconClasses} />
+      </ButtonifiedElement>
+      <p className="text-xl inline">{ `${currPage} / ${lastPage}` }</p>
+      <ButtonifiedElement enabled={nextPageEnabled} onClick={onNextPageClicked}>
+        <ChevronRightIcon className={commonIconClasses} />
+      </ButtonifiedElement>
     </article>
   </div>
 }
+
+//const commonClasses = "h-5 w-5 inline"
 
 export default _SmallDomainsPageHeader

@@ -12,11 +12,7 @@ function App() {
   const [localSmallDomains, setLocalSmallDomains] = React.useState<SmallDomain[]>(getStoredSmallDomains())
   React.useEffect(() => {
     // https://stackoverflow.com/questions/60540985/react-usestate-doesnt-update-in-window-events
-    return addListenerOfLocallyStoredSmallDomains((sd) => {
-      setLocalSmallDomains(sd)
-      console.log(sd)
-    })
-  }, [])
+    return addListenerOfLocallyStoredSmallDomains(setLocalSmallDomains)}, [])
 
   return (
     <div className="App dark">
