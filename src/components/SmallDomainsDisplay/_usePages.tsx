@@ -1,13 +1,14 @@
 import React from 'react'
 
 interface PagesReturnType<T> {
-  getCurrElements : (elements : T[], currPages : number) => T[],
   currPage : number,
   lastPage : number,
   canGoToPrevPage : boolean,
   canGoToNextPage : boolean,
   goToPrevPage : () => void,
-  goToNextPage : () => void
+  goToNextPage : () => void,
+  goToFirstPage : () => void,
+  getCurrElements : (elements : T[], currPages : number) => T[]
 }
 
 const _usePages = <T,>(
@@ -40,14 +41,17 @@ const _usePages = <T,>(
     }
   }
 
+  const goToFirstPage = () => setCurrPage(1)
+
   return {
-    getCurrElements,
     currPage,
     lastPage,
     canGoToPrevPage,
     canGoToNextPage,
     goToPrevPage,
-    goToNextPage
+    goToNextPage,
+    goToFirstPage,
+    getCurrElements
   }
 }
 

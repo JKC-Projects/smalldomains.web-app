@@ -12,28 +12,41 @@ const getExpiryString = (smallDomain: SmallDomain) => {
   return stringifyDate(date)
 }
 
-interface IProps {
-  smallDomainObj : SmallDomain
+const getTrimmedLargeDomain = (largeDomain : string) => {
+  const MAX_CHARS = 32
+  if(largeDomain.length <= MAX_CHARS) {
+    return largeDomain
+  } else {
+    return largeDomain.slice(0, MAX_CHARS) + "..."
+  }
 }
 
-const _SmallDomainInfo : React.FC<IProps> = (props) => {
+interface IProps {
+  smallDomainObj : SmallDomain,
+  flashing? : boolean
+}
+
+const _SmallDomainInfo : React.FC<IProps> = ({
+  smallDomainObj,
+  flashing = false
+}) => {
 const {
   smallDomain,
   largeDomain
-} = props.smallDomainObj
+} = smallDomainObj
 
   return (
-    <div className="SmallDomainInfo p-5">
+    <div className={`SmallDomainInfo p-5 ${flashing ? "FlashingSmallDomainInfo" : ""}`}>
       <div>
         <u><a className="text-lg text-blue-900" href={`https://${FRIENDLY_FORWARDER_URL}/${smallDomain}`}>{ `${FRIENDLY_FORWARDER_URL}/${smallDomain}` }</a></u>
       </div>
       <div className="flex justify-between">
         <div className="inline-block">
           <ArrowRightIcon className="h-3 w-3 mr-1 inline"/>
-          <p className="text-sm inline">{ largeDomain }</p>
+          <p title={largeDomain} className="text-sm inline">{ getTrimmedLargeDomain(largeDomain) }</p>
         </div>
         <div>
-          <p className="inline">{ `expires ${getExpiryString(props.smallDomainObj)}` }</p>
+          <p className="inline">{ `expires ${getExpiryString(smallDomainObj)}` }</p>
         </div>
       </div>
     </div>

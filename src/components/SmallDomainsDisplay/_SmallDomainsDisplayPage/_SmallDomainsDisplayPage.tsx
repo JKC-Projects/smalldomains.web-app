@@ -5,18 +5,25 @@ import { default as SmallDomainInfo } from './_SmallDomainInfo/_SmallDomainInfo'
 import './_SmallDomainsDisplayPage.css'
 
 interface IProps {
-  smallDomains : SmallDomain[]
+  smallDomains : SmallDomain[],
+  hasSmallDomainBeenCreatedAtLeastOnce : boolean
 }
 
-const _SmallDomainsDisplayPage : React.FC<IProps> = (props) => {
+const _SmallDomainsDisplayPage : React.FC<IProps> = ({
+  smallDomains,
+  hasSmallDomainBeenCreatedAtLeastOnce
+}) => {
+  const smallDomainObjToSmallDomainInfo = (sd : SmallDomain, index: number) =>
+    <li key={sd.smallDomain}>
+      <SmallDomainInfo smallDomainObj={sd} flashing={hasSmallDomainBeenCreatedAtLeastOnce && index === 0} />
+    </li>
+
   return <div className="w-[70vw]">
       <ul className="PageList">
-      { 
-        props.smallDomains.length === 0
+      {
+        smallDomains.length === 0
           ? <NoSmallDomainInfo />
-          : props.smallDomains.map(sd => <li key={sd.smallDomain}>
-              <SmallDomainInfo smallDomainObj={sd} />
-            </li>)
+          : smallDomains.map(smallDomainObjToSmallDomainInfo)
       }
     </ul>
 </div>
