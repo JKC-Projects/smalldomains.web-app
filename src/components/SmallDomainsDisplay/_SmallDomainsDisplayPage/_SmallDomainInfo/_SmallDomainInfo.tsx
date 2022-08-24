@@ -42,7 +42,7 @@ const {
       </div>
       <div className="flex justify-between">
         <div className="inline-block">
-          <ArrowRightIcon className="h-3 w-3 mr-1 inline"/>
+          <ArrowRightIcon className="h-3 w-3 mr-1  sm:hidden"/>
           <p title={largeDomain} className="text-sm inline">{ getTrimmedLargeDomain(largeDomain) }</p>
         </div>
         <div>

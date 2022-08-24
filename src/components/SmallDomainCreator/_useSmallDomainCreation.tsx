@@ -37,7 +37,7 @@ const _useSmallDomainCreation = () => {
     setErrorMessage(null)
     setIsLoading(true)
     setDisabled(true)
-    createSmallDomain(largeDomain,
+    createSmallDomain(largeDomain.trim(),
       (smallDomain : SmallDomain) => setTimeout(() => onSuccess(smallDomain), 500), 
       (errorMessage : string) => setTimeout(() => onFailure(errorMessage), 200)
     )

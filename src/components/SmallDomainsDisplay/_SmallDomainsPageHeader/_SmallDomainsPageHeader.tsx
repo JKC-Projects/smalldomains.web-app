@@ -32,7 +32,7 @@ const _SmallDomainsPageHeader : React.FC<IProps> = ({
       <ButtonifiedElement enabled={prevPageEnabled} onClick={onPrevPageClicked}>
         <ChevronLeftIcon className={commonIconClasses} />
       </ButtonifiedElement>
-      <p className="text-xl inline">{ `${currPage} / ${lastPage}` }</p>
+      <p className="text-xl select-none inline">{ `${currPage} / ${lastPage}` }</p>
       <ButtonifiedElement enabled={nextPageEnabled} onClick={onNextPageClicked}>
         <ChevronRightIcon className={commonIconClasses} />
       </ButtonifiedElement>

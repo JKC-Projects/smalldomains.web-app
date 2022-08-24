@@ -1,5 +1,5 @@
 import React from 'react'
-import '../_BaseCard.css'
+import '../BaseCard/_BaseCard.css'
 import './_LoadingCard.css'
 
 interface IProps {
