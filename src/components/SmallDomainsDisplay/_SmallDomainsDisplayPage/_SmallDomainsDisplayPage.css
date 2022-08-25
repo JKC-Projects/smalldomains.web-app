@@ -1,0 +1,3 @@
+.PageList li + li > div {
+  border-top-style: none;
+}

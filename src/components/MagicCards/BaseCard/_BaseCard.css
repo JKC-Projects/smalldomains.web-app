@@ -1,0 +1,19 @@
+.BaseCard_Card {
+  background-color: #1b1f2e;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  position: relative;
+  margin: 2rem;
+}
+
+.BaseCard_Card:before {
+  content: "";
+  height: 110%;
+  width: 106%;  /* TODO make width responsive on smaller screens */
+  border-radius: 0.8rem;
+  
+  position: absolute;
+  top: -5%;
+  left: -3%;
+  z-index: -999999;
+}
