@@ -40,14 +40,16 @@ const {
       <div>
         <u><a className="text-xl text-blue-900" href={`https://${FRIENDLY_FORWARDER_URL}/${smallDomain}`}>{ `${FRIENDLY_FORWARDER_URL}/${smallDomain}` }</a></u>
       </div>
-      <div className="flex justify-between flex-wrap">
-        <div className="m-1">
-          <ArrowRightIcon className="h-3 w-3 mr-2 inline align-middle"/>
-          <div className="inline-block">
-            <p title={largeDomain} className="text-base inline-block align-middle">{ getTrimmedLargeDomain(largeDomain) }</p>
+      <div className="flex justify-between content-center flex-wrap">
+        <div className="m-1 flex content-center">
+          <div className="flex mr-3">
+            <ArrowRightIcon className="h-3 w-3 m-auto"/>
           </div>
+          <p title={largeDomain}>{ getTrimmedLargeDomain(largeDomain) }</p>
         </div>
-        <i className="text-base inline-block align-middle">{ `expires ${getExpiryString(smallDomainObj)}` }</i>
+        <div className="flex">
+          <i className="m-auto">{ `expires ${getExpiryString(smallDomainObj)}` }</i>
+        </div>
       </div>
     </div>
   )
