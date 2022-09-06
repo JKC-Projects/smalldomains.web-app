@@ -36,7 +36,7 @@ const _SmallDomainsDisplay : React.FC<IProps> = ({
     })
   })
 
-  return <div className='w-[90vw] lg:w-[70vw] xl:w-[50vw]'>
+  return <div className='m-3 w-[90vw] lg:w-[70vw] xl:w-[50vw]'>
     <SmallDomainsPageHeader currPage={currPage} lastPage={lastPage} prevPageEnabled={canGoToPrevPage} nextPageEnabled={canGoToNextPage} onPrevPageClicked={goToPrevPage} onNextPageClicked={goToNextPage}/>
     <SmallDomainsDisplayPage smallDomains={getCurrElements(smallDomains, currPage)} hasSmallDomainBeenCreatedAtLeastOnce={hasSmallDomainBeenCreatedAtLeastOnce && currPage === 1}/>
   </div>

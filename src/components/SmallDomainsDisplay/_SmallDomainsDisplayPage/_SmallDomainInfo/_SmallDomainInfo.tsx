@@ -13,7 +13,7 @@ const getExpiryString = (smallDomain: SmallDomain) => {
 }
 
 const getTrimmedLargeDomain = (largeDomain : string) => {
-  const MAX_CHARS = 32
+  const MAX_CHARS = 22
   if(largeDomain.length <= MAX_CHARS) {
     return largeDomain
   } else {
@@ -38,16 +38,14 @@ const {
   return (
     <div className={`SmallDomainInfo p-5 ${flashing ? "FlashingSmallDomainInfo" : ""}`}>
       <div>
-        <u><a className="text-lg text-blue-900" href={`https://${FRIENDLY_FORWARDER_URL}/${smallDomain}`}>{ `${FRIENDLY_FORWARDER_URL}/${smallDomain}` }</a></u>
+        <u><a className="text-xl text-blue-900" href={`https://${FRIENDLY_FORWARDER_URL}/${smallDomain}`}>{ `${FRIENDLY_FORWARDER_URL}/${smallDomain}` }</a></u>
       </div>
-      <div className="flex justify-between">
-        <div className="inline-block">
-          <ArrowRightIcon className="h-3 w-3 mr-1  sm:hidden"/>
-          <p title={largeDomain} className="text-sm inline">{ getTrimmedLargeDomain(largeDomain) }</p>
+      <div className="flex justify-between flex-wrap">
+        <div className="m-1">
+          <ArrowRightIcon className="h-3 w-3 mr-2 inline"/>
+          <p title={largeDomain} className="text-base inline">{ getTrimmedLargeDomain(largeDomain) }</p>
         </div>
-        <div>
-          <p className="inline">{ `expires ${getExpiryString(smallDomainObj)}` }</p>
-        </div>
+        <i className="text-base">{ `expires ${getExpiryString(smallDomainObj)}` }</i>
       </div>
     </div>
   )
