@@ -18,7 +18,7 @@ const _SmallDomainsDisplayPage : React.FC<IProps> = ({
       <SmallDomainInfo smallDomainObj={sd} flashing={hasSmallDomainBeenCreatedAtLeastOnce && index === 0} />
     </li>
 
-  return <div className="w-[70vw]">
+  return <div>
       <ul className="PageList">
       {
         smallDomains.length === 0

@@ -4,7 +4,7 @@ import { ArrowRightIcon } from '@heroicons/react/outline'
 
 import './_SmallDomainInfo.css'
 
-const FRIENDLY_FORWARDER_URL : string = process.env.REACT_APP_SMALL_DOMAINS_FORWARDER_USER_FRIENDLY_URL
+const FRIENDLY_FORWARDER_URL : string = process.env.REACT_APP_SMALL_DOMAINS_FORWARDER_USER_FRIENDLY_URL as string
 
 const getExpiryString = (smallDomain: SmallDomain) => {
   const stringifyDate = (d: Date) : string => `${d.toLocaleString('default', {month: 'long'})} ${d.getDate()}, ${d.getFullYear()} | ${d.toLocaleTimeString('default', {hour: '2-digit', minute: '2-digit'})}`
