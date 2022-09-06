@@ -1,5 +1,4 @@
 import React from 'react'
-import { ArrowCircleUpIcon } from '@heroicons/react/solid'
 
 import './_NoSmallDomainInfo.css'
 

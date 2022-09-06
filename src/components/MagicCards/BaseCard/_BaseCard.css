@@ -4,16 +4,25 @@
   border-radius: 0.5rem;
   position: relative;
   margin: 2rem;
+  margin-top: 1rem;
 }
 
 .BaseCard_Card:before {
+  --border-thickness: 2rem;
+
   content: "";
-  height: 110%;
-  width: 106%;  /* TODO make width responsive on smaller screens */
+  height: calc(100% + var(--border-thickness));
+  width: calc(100% + var(--border-thickness));
   border-radius: 0.8rem;
   
   position: absolute;
-  top: -5%;
-  left: -3%;
+  top: calc(var(--border-thickness) / -2);
+  left: calc(var(--border-thickness) / -2);
   z-index: -999999;
+}
+
+@media screen and (min-width: 768px) {
+  .BaseCard_Card:before {
+    --border-thickness: 2.75rem;
+  }
 }

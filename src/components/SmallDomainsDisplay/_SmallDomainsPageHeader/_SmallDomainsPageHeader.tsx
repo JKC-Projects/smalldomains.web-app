@@ -40,6 +40,4 @@ const _SmallDomainsPageHeader : React.FC<IProps> = ({
   </div>
 }
 
-//const commonClasses = "h-5 w-5 inline"
-
 export default _SmallDomainsPageHeader
