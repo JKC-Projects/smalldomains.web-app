@@ -1,1 +1,30 @@
-../_SmallDomainInfo/_SmallDomainInfo.css
+.SmallDomainInfo {
+  --border-width: 2px;
+  --base-background-color: rgb(203 213 225); 
+  
+    background-color: var(--base-background-color);
+    border-color: rgb(148 163 184);
+    border-style: solid;
+    border-top-width: var(--border-width);
+    border-bottom-width: var(--border-width);
+    width: 100%;
+  }
+  
+  .FlashingSmallDomainInfo {
+    animation: flash 3.0s linear 3;
+  }
+  
+  @keyframes flash {
+    0% {
+      background-color: var(--base-background-color)
+    }
+    33% {
+      background-color: rgba(195, 228, 255, 0.8)
+    }
+    66% {
+      background-color: rgba(131, 224, 247, 0.8)
+    }
+    100% {
+      background-color: var(--base-background-color)
+    }
+  }
