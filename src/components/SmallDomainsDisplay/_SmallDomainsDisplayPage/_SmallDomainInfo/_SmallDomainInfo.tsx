@@ -12,15 +12,6 @@ const getExpiryString = (smallDomain: SmallDomain) => {
   return stringifyDate(date)
 }
 
-const getTrimmedLargeDomain = (largeDomain : string) => {
-  const MAX_CHARS = 22
-  if(largeDomain.length <= MAX_CHARS) {
-    return largeDomain
-  } else {
-    return largeDomain.slice(0, MAX_CHARS) + "..."
-  }
-}
-
 interface IProps {
   smallDomainObj : SmallDomain,
   flashing? : boolean
@@ -41,14 +32,14 @@ const {
         <u><a className="text-xl text-blue-900" href={`https://${FRIENDLY_FORWARDER_URL}/${smallDomain}`}>{ `${FRIENDLY_FORWARDER_URL}/${smallDomain}` }</a></u>
       </div>
       <div className="flex justify-between content-center flex-wrap">
-        <div className="m-1 flex content-center">
+        <div className="m-1 flex content-center w-10/12 md:w-7/12">
           <div className="flex mr-3">
             <ArrowRightIcon className="h-3 w-3 m-auto"/>
           </div>
-          <p title={largeDomain}>{ getTrimmedLargeDomain(largeDomain) }</p>
+          <p title={largeDomain} className="whitespace-nowrap text-ellipsis overflow-hidden">{ largeDomain }</p>
         </div>
         <div className="flex">
-          <i className="m-auto">{ `expires ${getExpiryString(smallDomainObj)}` }</i>
+          <i className="m-auto text-slate-500">{ `expires ${getExpiryString(smallDomainObj)}` }</i>
         </div>
       </div>
     </div>
