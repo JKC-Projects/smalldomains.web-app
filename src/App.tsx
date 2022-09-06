@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App dark">
       <Header />
-      <div className="flex flex-col mt-5 items-center">
+      <div className="flex flex-col w-full mt-5 items-center">
         <SmallDomainCreator />
         <SmallDomainsDisplay smallDomains={localSmallDomains} />
       </div>

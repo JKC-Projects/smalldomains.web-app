@@ -42,10 +42,12 @@ const {
       </div>
       <div className="flex justify-between flex-wrap">
         <div className="m-1">
-          <ArrowRightIcon className="h-3 w-3 mr-2 inline"/>
-          <p title={largeDomain} className="text-base inline">{ getTrimmedLargeDomain(largeDomain) }</p>
+          <ArrowRightIcon className="h-3 w-3 mr-2 inline align-middle"/>
+          <div className="inline-block">
+            <p title={largeDomain} className="text-base inline-block align-middle">{ getTrimmedLargeDomain(largeDomain) }</p>
+          </div>
         </div>
-        <i className="text-base">{ `expires ${getExpiryString(smallDomainObj)}` }</i>
+        <i className="text-base inline-block align-middle">{ `expires ${getExpiryString(smallDomainObj)}` }</i>
       </div>
     </div>
   )
