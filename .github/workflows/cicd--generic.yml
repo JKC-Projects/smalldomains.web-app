@@ -10,6 +10,10 @@ on:
       TF_API_TOKEN:
         required: true
 
+# Required to use GitHub OIDC Token with AWS
+permissions:
+  id-token: write
+
 jobs:
   # you cannot pass env vars directly to the input of a workflow call
   # hence giving them as job outputs as a workaround
