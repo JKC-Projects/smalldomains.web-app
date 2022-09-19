@@ -18,6 +18,7 @@ jobs:
   # hence giving them as job outputs as a workaround
   setup-constant-variables:
     name: "Set Up CICD Parameters"
+    runs-on: ubuntu-latest
     outputs:
       node-version: 18.x
       yarn-version: 1.22.19
