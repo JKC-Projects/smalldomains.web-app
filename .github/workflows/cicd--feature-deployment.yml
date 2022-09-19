@@ -9,7 +9,6 @@ permissions:
 
 jobs:
   feature-deployment:
-    name: "Run CICD Feature Deployment"
     uses: ./.github/workflows/cicd--generic.yml
     with:
       environment: development
