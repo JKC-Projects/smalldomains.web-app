@@ -40,7 +40,6 @@ jobs:
     needs: deploy-infrastructure
     uses: ./.github/workflows/deploy_web_app.yml
     with:
-    with:
       environment: ${{ inputs.environment }}
       node-version: ${{ env.node-version }}
       yarn-version: ${{ env.yarn-version }}
