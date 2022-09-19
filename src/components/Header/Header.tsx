@@ -11,7 +11,7 @@ const Header = () => (
     <div className="flex justify-center">
       <article className="flex flex-col items-center prose prose-stone dark:prose-invert grow">
         <hr className="m-0 mt-2 text-slate-50 bg-slate-50 h-px border-none w-11/12" />
-        <p className="text-sm mt-3 text-center"><u>Powered by</u> AWS, Typescript, React, Go, Java, Terraform, GitHub Actions</p>
+        <p className="text-sm mt-3 text-center">Powered by AWS, Typescript, React, Go, Java, Terraform, GitHub Actions</p>
         <a className="text-sm" href="https://github.com/orgs/JKC-Projects/repositories">Click here to see the source code</a>
       </article>
     </div>
