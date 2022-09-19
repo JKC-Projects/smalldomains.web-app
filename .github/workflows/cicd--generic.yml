@@ -10,9 +10,6 @@ on:
       TF_API_TOKEN:
         required: true
 
-env:
-
-
 jobs:
   # you cannot pass env vars directly to the input of a workflow call
   # hence giving them as job outputs as a workaround
