@@ -1,0 +1,46 @@
+name: 'Full CICD Process'
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      TF_API_TOKEN:
+        required: true
+
+env:
+  node-version: 18.x
+  yarn-version: 1.22.19
+
+jobs:
+  run-tests-and-format-code:
+    name: "Run Automated Tests and Check Code Format"
+    uses: ./.github/workflows/run_tests_and_format_code.yml
+    with:
+      environment: ${{ inputs.environment }}
+      node-version: ${{ env.node-version }}
+      yarn-version: ${{ env.yarn-version }}
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  deploy-infrastructure:
+    name: 'Deploy Infrastructure'
+    needs: run-tests-and-format-code
+    environment: ${{ inputs.environment }}
+    uses: ./.github/workflows/deploy_infra.yml
+    with:
+      environment: ${{ inputs.environment }}
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  deploy-web-app:
+    name: Deploy Web Application
+    needs: deploy-infrastructure
+    uses: ./.github/workflows/deploy_web_app.yml
+    with:
+    with:
+      environment: ${{ inputs.environment }}
+      node-version: ${{ env.node-version }}
+      yarn-version: ${{ env.yarn-version }}

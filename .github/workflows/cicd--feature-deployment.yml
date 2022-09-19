@@ -1,0 +1,14 @@
+name: 'CICD - Feature Deployment'
+
+on:
+  push:
+
+jobs:
+  feature-deployment:
+    name: "Run Automated Tests and Check Code Format"
+    environment: ${{ inputs.environment }}
+    uses: ./.github/workflows/cicd--generic.yml
+    with:
+      environment: development
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}

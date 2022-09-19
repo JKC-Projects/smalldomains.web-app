@@ -1,0 +1,40 @@
+name: 'Test and Deploy Web-App'
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      node-version:
+        required: true
+        type: string
+      yarn-version:
+        required: true
+        type: string  
+
+# Required to use GitHub OIDC Token with AWS
+permissions:
+  id-token: write
+
+jobs:
+  deploy-web-app:
+    name: 'Deploy Infrastructure'
+    environment: ${{ inputs.environment }}
+
+    steps:
+    - name: Checkout Git Repo
+      uses: action/checkout@v3
+
+    - name: Install Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: [${{ inputs.yarn-version }}]
+      
+    - name: Install Yarn
+      run: npm install --global yarn@${{ inputs.yarn-version }}
+
+    - name: Build SPA Project
+      run: yarn build:${{ inputs.environment }}
+
+  # Add in AWS S3 CLI Commands to deploy web app 
