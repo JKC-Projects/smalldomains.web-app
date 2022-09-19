@@ -24,20 +24,20 @@ resource "aws_s3_bucket_website_configuration" "web-app" {
 
   // TODO create a separate error page?
   error_document {
-    suffix = "index.html"
+    key = "index.html"
   }
 }
 
 resource "aws_s3_bucket_policy" "web-app-access-logs" {
   bucket = aws_s3_bucket.web-app-access-logs.id
-  policy = data.aws_iam_policy_document.allow_access_from_another_account.json
+  policy = data.aws_iam_policy_document.web-app-access-logs.json
 }
 
 data "aws_iam_policy_document" "web-app-access-logs" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = [data.aws_caller_identity.account_id]
+      identifiers = [data.aws_caller_identity.current.account_id]
     }
 
     actions = [
