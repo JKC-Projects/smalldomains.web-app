@@ -29,7 +29,7 @@ jobs:
     - name: Install Node
       uses: actions/setup-node@v3
       with:
-        node-version: [${{ inputs.yarn-version }}]
+        node-version: ${{ inputs.yarn-version }}
       
     - name: Install Yarn
       run: npm install --global yarn@${{ inputs.yarn-version }}
