@@ -36,6 +36,7 @@ jobs:
 
   run-react-unit-tests:
     name: 'Run Unit Tests on React App'
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Git Repo
