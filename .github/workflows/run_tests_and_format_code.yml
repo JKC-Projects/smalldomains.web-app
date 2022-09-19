@@ -3,6 +3,9 @@ name: 'Check Code Format and Run Automated Tests'
 on:
   workflow_call:
     inputs:
+      environment:
+        required: true
+        type: string
       node-version:
         required: true
         type: string
@@ -19,6 +22,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set Environment Variables
+      run: |
+        case ${{ inputs.environment }} in
+          development)  echo "TF_WORKSPACE=smalldomains--web-app-dev" >> $GITHUB_ENV;;
+          production)   echo "TF_WORKSPACE=smalldomains--web-app-prod" >> $GITHUB_ENV;;
+          *)            echo "${{ inputs.environment }} is an unrecognised environment"; exit 1;;
+        esac
+
+    - name: View Environment Variables
+      run: echo "Using TF_WORKSPACE of $TF_WORKSPACE"
+
     - name: Checkout Git Repo
       uses: actions/checkout@v3
       

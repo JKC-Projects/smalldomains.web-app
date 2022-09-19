@@ -33,6 +33,7 @@ jobs:
     needs: setup-constant-variables
     uses: ./.github/workflows/run_tests_and_format_code.yml
     with:
+      environment: ${{ inputs.environment }}
       node-version: ${{ needs.setup-constant-variables.outputs.node-version }}
       yarn-version: ${{ needs.setup-constant-variables.outputs.yarn-version }}
     secrets:
