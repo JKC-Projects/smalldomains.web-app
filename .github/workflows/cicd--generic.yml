@@ -41,7 +41,6 @@ jobs:
   deploy-infrastructure:
     name: 'Deploy Infrastructure'
     needs: run-tests-and-format-code
-    environment: ${{ inputs.environment }}
     uses: ./.github/workflows/deploy_infra.yml
     with:
       environment: ${{ inputs.environment }}
