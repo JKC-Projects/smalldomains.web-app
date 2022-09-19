@@ -29,7 +29,7 @@ jobs:
       run: echo "Using TF_WORKSPACE of $TF_WORKSPACE"
 
     - name: Checkout Git Repo
-      uses: action/checkout@v3
+      uses: actions/checkout@v3
       
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
