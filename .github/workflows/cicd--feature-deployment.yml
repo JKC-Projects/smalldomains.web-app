@@ -6,7 +6,6 @@ on:
 jobs:
   feature-deployment:
     name: "Run Automated Tests and Check Code Format"
-    environment: ${{ inputs.environment }}
     uses: ./.github/workflows/cicd--generic.yml
     with:
       environment: development
