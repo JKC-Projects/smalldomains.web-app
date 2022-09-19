@@ -21,7 +21,10 @@ jobs:
     outputs:
       node-version: 18.x
       yarn-version: 1.22.19
-    steps: []
+    steps:
+    # This placeholder step is required to create a valid job
+    - name: Initialisation
+      run: echo "Beginning CICD" 
 
   run-tests-and-format-code:
     name: "Run Automated Tests and Check Code Format"
