@@ -25,7 +25,7 @@ jobs:
     steps:
     # This placeholder step is required to create a valid job
     - name: Initialisation
-      run: echo "Beginning CICD" 
+      run: echo "Beginning CICD..." 
 
   run-tests-and-format-code:
     name: "Run Automated Tests and Check Code Format"
@@ -53,5 +53,5 @@ jobs:
     uses: ./.github/workflows/deploy_web_app.yml
     with:
       environment: ${{ inputs.environment }}
-      node-version: ${{ env.node-version }}
-      yarn-version: ${{ env.yarn-version }}
+      node-version: ${{ needs.setup-constant-variables.outputs.node-version }}
+      yarn-version: ${{ needs.setup-constant-variables.outputs.yarn-version }}
