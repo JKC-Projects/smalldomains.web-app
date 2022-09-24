@@ -1,7 +1,3 @@
-data "aws_ssm_parameter" "smalldomains_apex_domain" {
-  name = "/route53/small.domains/apex-domain"
-}
-
-data "aws_ssm_parameter" "r53_zoneids" {
-  name = "/route53/small.domains/zone-id"
+data "aws_ssm_parameter" "smalldomains_zone_id" {
+  name = "/route53/${local.env_root_domain}/zone-id"
 }
