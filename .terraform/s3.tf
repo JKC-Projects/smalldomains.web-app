@@ -9,7 +9,6 @@ resource "aws_s3_bucket" "web-app" {
 
 resource "aws_s3_bucket" "web-app-access-logs" {
   bucket_prefix = "smalldomains--web-app-access-logs-"
-
 }
 
 resource "aws_s3_bucket_logging" "web-app-access-logs" {
@@ -32,9 +31,29 @@ resource "aws_s3_bucket_website_configuration" "web-app" {
   }
 }
 
+resource "aws_s3_bucket_policy" "web-app" {
+  bucket = aws_s3_bucket.web-app.id
+  policy = data.aws_iam_policy_document.web-app.json
+}
+
 resource "aws_s3_bucket_policy" "web-app-access-logs" {
   bucket = aws_s3_bucket.web-app-access-logs.id
   policy = data.aws_iam_policy_document.web-app-access-logs.json
+}
+
+data "aws_iam_policy_document" "web-app" {
+  statement {
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+
+    actions = [
+      "s3:GetObject"
+    ]
+
+    resources = ["${aws_s3_bucket.web-app.arn}/*"]
+  }
 }
 
 data "aws_iam_policy_document" "web-app-access-logs" {
