@@ -6,5 +6,5 @@ locals {
 module "other_tls_certs" {
   source          = "./validated_tls_cert"
   fqdn            = local.fqdn
-  route53_zone_id = data.aws_ssm_parameter.r53_zoneids[env_root_domain].value
+  route53_zone_id = data.aws_ssm_parameter.r53_zoneids.value
 }

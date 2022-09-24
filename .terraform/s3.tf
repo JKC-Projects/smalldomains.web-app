@@ -45,8 +45,8 @@ resource "aws_s3_bucket_policy" "web-app-access-logs" {
 data "aws_iam_policy_document" "web-app" {
   statement {
     principals {
-      type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.web-app.iam_arn]
+      type        = "*"
+      identifiers = ["*"]
     }
 
     actions = [
