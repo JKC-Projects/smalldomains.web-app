@@ -19,11 +19,6 @@ resource "aws_s3_bucket_logging" "web-app-access-logs" {
   target_prefix = local.web_app_logs_s3_object_prefix
 }
 
-resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
-  bucket = aws_s3_bucket.example.id
-  policy = data.aws_iam_policy_document.allow_access_from_another_account.json
-}
-
 resource "aws_s3_bucket_website_configuration" "web-app" {
   bucket = aws_s3_bucket.web-app.bucket
 

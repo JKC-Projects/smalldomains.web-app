@@ -13,6 +13,9 @@ on:
         required: true
         type: string  
 
+env:
+  AWS_REGION: eu-west-1
+
 # Required to use GitHub OIDC Token with AWS
 permissions:
   id-token: write
@@ -41,4 +44,24 @@ jobs:
     - name: Build SPA Project
       run: yarn build:${{ inputs.environment }}
 
-  # Add in AWS S3 CLI Commands to deploy web app 
+    - name: Login to AWS with DEV credentials
+      if: ${{ inputs.environment == 'development'}}
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::646359775865:role/RoleForGithubActions
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to AWS with PROD credentials
+      if: ${{ inputs.environment == 'production'}}
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::787939685470:role/RoleForGithubActions
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Deploy Static Assets into S3 Bucket
+      run: |
+        set -o pipefail
+        SSM_PARAM_NAME=/smalldomains/web-app/s3-deployment
+
+        S3_DEPLOY_ARN=$(aws ssm get-parameter --name $SSM_PARAM_NAME --with-decryption | jq -r .Parameter.Value)
+
