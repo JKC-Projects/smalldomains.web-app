@@ -64,4 +64,4 @@ jobs:
         SSM_PARAM_NAME=/smalldomains/web-app/s3-deployment
 
         S3_DEPLOY_ID=$(aws ssm get-parameter --name $SSM_PARAM_NAME --with-decryption | jq -r .Parameter.Value)
-        aws s3 sync ./build s3://${S3_DEPLOY_NAME}
+        aws s3 sync ./build s3://${S3_DEPLOY_ID}
