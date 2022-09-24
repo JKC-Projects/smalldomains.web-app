@@ -41,11 +41,12 @@ resource "aws_s3_bucket_policy" "web-app-access-logs" {
   policy = data.aws_iam_policy_document.web-app-access-logs.json
 }
 
+# Restrict Read access to S3 Web App Bucket to CloudFront CDN Only
 data "aws_iam_policy_document" "web-app" {
   statement {
     principals {
-      type        = "*"
-      identifiers = ["*"]
+      type        = "AWS"
+      identifiers = [aws_cloudfront_origin_access_identity.web-app.iam_arn]
     }
 
     actions = [
