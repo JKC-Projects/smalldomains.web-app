@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   deploy-web-app:
-    name: 'Deploy Infrastructure'
+    name: 'Deploy Web App'
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
 
