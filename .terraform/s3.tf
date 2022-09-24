@@ -3,12 +3,12 @@ locals {
 }
 
 resource "aws_s3_bucket" "web-app" {
-  bucket_prefix = "smalldomains--weba-app-"
+  bucket_prefix = "smalldomains--web-app-"
 
 }
 
 resource "aws_s3_bucket" "web-app-access-logs" {
-  bucket_prefix = "smalldomains--weba-app-access-logs-"
+  bucket_prefix = "smalldomains--web-app-access-logs-"
 
 }
 
