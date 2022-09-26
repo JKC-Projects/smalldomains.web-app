@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "web-app" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.web-app.iam_arn]
+      identifiers = ["*"]
     }
 
     actions = [
