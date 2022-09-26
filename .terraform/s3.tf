@@ -39,17 +39,21 @@ resource "aws_s3_bucket_policy" "web-app-access-logs" {
 
 # Restrict Read access to S3 Web App Bucket to CloudFront CDN Only
 data "aws_iam_policy_document" "web-app" {
+  # Give AWS Cloudfront permission to access the S3 Web App Bucket
+  # https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-cloudfront
   statement {
     principals {
       type        = "AWS"
-      identifiers = ["*"]
+      identifiers = ["${aws_cloudfront_origin_access_identity.web-app.iam_arn}"]
     }
 
     actions = [
       "s3:GetObject"
     ]
 
-    resources = ["${aws_s3_bucket.web-app.arn}/*"]
+    resources = [
+      "${aws_s3_bucket.web-app.arn}/*",
+    ]
   }
 }
 
@@ -71,7 +75,7 @@ data "aws_iam_policy_document" "web-app-access-logs" {
     ]
   }
 
-  # Give the AWS Logging Service permission to write logs to S3 Access Logs Bucket
+  # Give the AWS Logging Service permission to write logs to S3 Access Logs Bucket from S3 Web-App
   # https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html
   statement {
     principals {
