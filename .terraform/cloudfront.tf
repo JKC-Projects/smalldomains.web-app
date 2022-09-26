@@ -10,7 +10,8 @@ resource "aws_cloudfront_distribution" "web-app" {
   origin {
     domain_name = aws_s3_bucket_website_configuration.web-app.website_domain
     origin_id   = local.web-app-s3-cloudfront-origin-id
-    s3_origin_config = {
+
+    s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.web-app.cloudfront_access_identity_path
     }
   }
@@ -27,8 +28,11 @@ resource "aws_cloudfront_distribution" "web-app" {
   }
 
   restrictions {
-    restriction_type = "none"
+    geo_restriction {
+      restriction_type = "none"
+    }
   }
+
   # I'm being really cheap here: only using the cheapest edge locations (N. America/Europe)
   price_class = "PriceClass_100"
 
