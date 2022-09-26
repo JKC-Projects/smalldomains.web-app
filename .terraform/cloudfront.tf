@@ -3,11 +3,11 @@ locals {
 }
 
 resource "aws_cloudfront_distribution" "web-app" {
-  enabled = true
+  enabled = false
   aliases = ["pages.${data.aws_ssm_parameter.smalldomains_apex_domain}"]
   comment = "CDN Solution for the SmallDomains Web App"
 
-  origin = {
+  origin {
     domain_name = aws_s3_bucket_website_configuration.web-app.website_domain
     origin_id   = local.web-app-s3-cloudfront-origin-id
     s3_origin_config = {
@@ -15,7 +15,7 @@ resource "aws_cloudfront_distribution" "web-app" {
     }
   }
 
-  default_cache_behavior = {
+  default_cache_behavior {
     target_origin_id       = local.web-app-s3-cloudfront-origin-id
     viewer_protocol_policy = "redirect-to-https"
     allowed_methods        = ["GET", "HEAD"]
@@ -23,9 +23,12 @@ resource "aws_cloudfront_distribution" "web-app" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = module.other_tls_certs.aws_acm_certificate.arn
+    acm_certificate_arn = module.other_tls_certs.tls_cert.arn
   }
 
+  restrictions {
+    restriction_type = "none"
+  }
   # I'm being really cheap here: only using the cheapest edge locations (N. America/Europe)
   price_class = "PriceClass_100"
 
