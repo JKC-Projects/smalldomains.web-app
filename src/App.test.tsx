@@ -2,8 +2,14 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('does subtitle exist', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByText(/Making your domains... small/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+test('does tech stack info exist', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/Powered by AWS, Typescript, React, Go, Java, Terraform, GitHub Actions/i);
   expect(linkElement).toBeInTheDocument();
 });

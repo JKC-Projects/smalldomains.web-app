@@ -1,0 +1,58 @@
+name: 'Full CICD Process'
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      TF_API_TOKEN:
+        required: true
+
+# Required to use GitHub OIDC Token with AWS
+permissions:
+  id-token: write
+
+jobs:
+  # you cannot pass env vars directly to the input of a workflow call
+  # hence giving them as job outputs as a workaround
+  setup-constant-variables:
+    name: "Set Up CICD Parameters"
+    runs-on: ubuntu-latest
+    outputs:
+      node-version: 18.x
+      yarn-version: 1.22.19
+    steps:
+    # This placeholder step is required to create a valid job
+    - name: Initialise CICD Parameters
+      run: echo "Beginning CICD..." 
+
+  run-tests-and-format-code:
+    name: "Run Automated Tests and Check Code Format"
+    needs: setup-constant-variables
+    uses: ./.github/workflows/run_tests_and_format_code.yml
+    with:
+      environment: ${{ inputs.environment }}
+      node-version: ${{ needs.setup-constant-variables.outputs.node-version }}
+      yarn-version: ${{ needs.setup-constant-variables.outputs.yarn-version }}
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  deploy-infrastructure:
+    name: 'Deploy Infrastructure'
+    needs: run-tests-and-format-code
+    uses: ./.github/workflows/deploy_infra.yml
+    with:
+      environment: ${{ inputs.environment }}
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  deploy-web-app:
+    name: Deploy Web Application
+    needs: deploy-infrastructure
+    uses: ./.github/workflows/deploy_web_app.yml
+    with:
+      environment: ${{ inputs.environment }}
+      node-version: ${{ needs.setup-constant-variables.outputs.node-version }}
+      yarn-version: ${{ needs.setup-constant-variables.outputs.yarn-version }}
