@@ -1,5 +1,5 @@
 locals {
-  env_root_domain = format("pages.%ssmall.domains", var.environment == "prod" ? "" : "${var.environment}.")
+  env_root_domain = format("%ssmall.domains", var.environment == "prod" ? "" : "${var.environment}.")
 }
 
 data "aws_ssm_parameter" "smalldomains_zone_id" {
