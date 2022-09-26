@@ -1,0 +1,18 @@
+name: 'CICD - Feature Deployment'
+
+on:
+  push:
+    branches:
+      - main
+
+# Required to use GitHub OIDC Token with AWS
+permissions:
+  id-token: write
+
+jobs:
+  feature-deployment:
+    uses: ./.github/workflows/cicd--generic.yml
+    with:
+      environment: production
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
