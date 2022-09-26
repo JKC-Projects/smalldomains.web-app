@@ -27,6 +27,8 @@ resource "aws_cloudfront_distribution" "web-app" {
     acm_certificate_arn = module.other_tls_certs.tls_cert.arn
   }
 
+  ssl_support_method = "sni-only"
+
   restrictions {
     geo_restriction {
       restriction_type = "none"
