@@ -8,7 +8,7 @@ resource "aws_cloudfront_distribution" "web-app" {
   comment = "CDN Solution for the SmallDomains Web App"
 
   origin {
-    domain_name = aws_s3_bucket_website_configuration.web-app.website_domain
+    domain_name = aws_s3_bucket.web-app.bucket_regional_domain_name
     origin_id   = local.web-app-s3-cloudfront-origin-id
 
     s3_origin_config {
