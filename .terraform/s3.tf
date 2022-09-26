@@ -1,7 +1,3 @@
-locals {
-  web_app_logs_s3_object_prefix = "log"
-}
-
 resource "aws_s3_bucket" "web-app" {
   bucket_prefix = "smalldomains--web-app-"
 
