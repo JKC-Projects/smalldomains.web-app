@@ -1,5 +1,5 @@
 locals {
-  fqdn            = format("pages.", local.env_root_domain)
+  fqdn = format("pages.", local.env_root_domain)
 }
 
 module "other_tls_certs" {
