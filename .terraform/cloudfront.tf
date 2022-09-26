@@ -3,7 +3,7 @@ locals {
 }
 
 resource "aws_cloudfront_distribution" "web-app" {
-  enabled = false
+  enabled = true
   aliases = ["pages.${data.aws_ssm_parameter.smalldomains_apex_domain.value}"]
   comment = "CDN Solution for the SmallDomains Web App"
 
