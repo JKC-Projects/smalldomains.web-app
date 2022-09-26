@@ -18,14 +18,6 @@ terraform {
   }
 }
 
-locals {
-  default_tags = {
-    project     = "small-domains"
-    managed_by  = "terraform"
-    github_repo = "smalldomains.web-app"
-  }
-}
-
 provider "aws" {
   region = "eu-west-1"
 

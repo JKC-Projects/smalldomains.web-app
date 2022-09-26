@@ -1,7 +1,3 @@
-locals {
-  web-app-s3-cloudfront-origin-id = "SmallDomainsWebAppS3Bucket"
-}
-
 resource "aws_cloudfront_distribution" "web-app" {
   enabled = true
   aliases = ["pages.${data.aws_ssm_parameter.smalldomains_apex_domain.value}"]

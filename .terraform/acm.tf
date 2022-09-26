@@ -1,7 +1,3 @@
-locals {
-  fqdn = format("pages.%s", local.env_root_domain)
-}
-
 module "other_tls_certs" {
   providers = {
     aws = aws.US_EAST_1
