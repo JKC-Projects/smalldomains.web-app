@@ -1,4 +1,4 @@
-.ErrorCard_Card:before {
+.ErrorCard_Card::before {
   background-image: linear-gradient(var(--angle), #c18672 10%, #e83737, #f70909);
   animation: spin 5s linear infinite;
 }
