@@ -5,6 +5,13 @@ resource "aws_ssm_parameter" "web-app-s3" {
   description = "The ID of the S3 Bucket which hosts the static site for SmallDomains"
 }
 
+resource "aws_ssm_parameter" "web-app-cloudfront-distribution-id" {
+  name        = "/smalldomains/web-app/cloudfront-distribution-id"
+  type        = "String"
+  value       = aws_cloudfront_distribution.web-app.id
+  description = "The Distribution ID of the CloudFront Distribution fronting the static site for SmallDomains Web-App"
+}
+
 resource "aws_ssm_parameter" "web-app-cloudfront-domain-name" {
   name        = "/smalldomains/web-app/cloudfront-domain-name"
   type        = "String"

@@ -65,3 +65,10 @@ jobs:
 
         S3_DEPLOY_ID=$(aws ssm get-parameter --name $SSM_PARAM_NAME --with-decryption | jq -r .Parameter.Value)
         aws s3 sync ./build s3://${S3_DEPLOY_ID}
+
+    - name: Invalidate CloudFront CDN Cache
+      run: |
+        set -o pipefail
+        SSM_PARAM_NAME=/smalldomains/web-app/cloudfront-distribution-id
+        CLOUDFRONT_DIST_ID=$(aws ssm get-parameter --name $SSM_PARAM_NAME --with-decryption | jq -r .Parameter.Value)
+        aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --path "/*"
