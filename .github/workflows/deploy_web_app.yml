@@ -58,7 +58,7 @@ jobs:
         role-to-assume: arn:aws:iam::787939685470:role/RoleForGithubActions
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: Deploy Static Assets into S3 Bucket
+    - name: Deploy Web App into S3 Bucket
       run: |
         set -o pipefail
         SSM_PARAM_NAME=/smalldomains/web-app/s3-deployment
@@ -71,4 +71,4 @@ jobs:
         set -o pipefail
         SSM_PARAM_NAME=/smalldomains/web-app/cloudfront-distribution-id
         CLOUDFRONT_DIST_ID=$(aws ssm get-parameter --name $SSM_PARAM_NAME --with-decryption | jq -r .Parameter.Value)
-        aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --path "/*"
+        aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --path "/" "/*"
