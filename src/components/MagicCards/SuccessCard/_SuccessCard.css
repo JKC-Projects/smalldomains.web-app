@@ -1,14 +1,13 @@
 .SuccessCard_Card::before {
-  --angle: 0deg;
-  background-image: linear-gradient(var(--angle), #53ed58, #4b8e5c, #68686e);
+  background-image: linear-gradient(0deg, #53ed58, #4b8e5c, #68686e);
   animation: spin 5s linear infinite;
 }
 
 @keyframes spin {
-  0% {
-    --angle: 0deg;
+  from {
+    transform: rotate(0deg);
   }
-  100% {
-    --angle: 360deg;
+  to {
+    transform: rotate(360deg);
   }
 }

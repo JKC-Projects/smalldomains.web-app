@@ -1,14 +1,13 @@
 .LoadingCard_Card::before {
-  --angle: 0deg;
-  background-image: linear-gradient(var(--angle), #5ab5af, #5a95b5 20%, #1b10e8, #625bea);
+  background-image: linear-gradient(0deg, #5ab5af, #5a95b5 20%, #1b10e8, #625bea);
   animation: spin 1.5s linear infinite;
 }
 
 @keyframes spin {
-  0% {
-    --angle: 0deg;
+  from {
+    transform: rotate(0deg);
   }
-  100% {
-    --angle: 360deg;
+  to {
+    transform: rotate(360deg);
   }
 }

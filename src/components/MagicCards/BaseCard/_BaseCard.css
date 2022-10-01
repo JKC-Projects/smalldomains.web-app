@@ -2,9 +2,12 @@
   --border-thickness: 2rem;
   
   padding: var(--border-thickness);
+  
+  margin: 2rem;
+  margin-top: 1rem;
 
   display: flex;
-  justify-content: center;
+  justify-content: center; 
 
   position: relative;
   overflow: hidden;
@@ -15,8 +18,8 @@
 .BaseCard_Border::before {
   content: "";
 
-  height: 1500px;
-  width: 1500px;
+  height: 1000px;
+  width: 1000px;
 
   align-self: center;
   position: absolute;
@@ -25,13 +28,8 @@
 }
 
 .BaseCard_Content {
-  /* background-color: #1b1f2e; */
+  background-color: #1b1f2e;
   border-radius: 0.5rem;
   padding: 2rem;
-}
-
-@media screen and (min-width: 768px) {
-  .BaseCard_Border::before {
-    --border-thickness: 2.75rem;
-  }
+  align-self: center;
 }

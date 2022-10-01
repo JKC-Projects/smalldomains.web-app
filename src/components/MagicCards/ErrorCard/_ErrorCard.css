@@ -1,14 +1,13 @@
 .ErrorCard_Card::before {
-  --angle: 0deg;
-  background-image: linear-gradient(var(--angle), #c18672 10%, #e83737, #f70909);
+  background-image: linear-gradient(0deg, #c18672 10%, #e83737, #f70909);
   animation: spin 5s linear infinite;
 }
 
 @keyframes spin {
-  0% {
-    --angle: 0deg;
+  from {
+    transform: rotate(0deg);
   }
-  100% {
-    --angle: 360deg;
+  to {
+    transform: rotate(360deg);
   }
 }
