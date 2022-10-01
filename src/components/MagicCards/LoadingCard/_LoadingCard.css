@@ -1,4 +1,4 @@
-.LoadingCard_Card::before {
+.LoadingCard_Border::before {
   background-image: linear-gradient(0deg, #5ab5af, #5a95b5 20%, #1b10e8, #625bea);
   animation: spin 1.5s linear infinite;
 }
