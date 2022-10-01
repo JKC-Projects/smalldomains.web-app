@@ -1,6 +1,6 @@
-.WaitingCard_Card::before {
-  display: inline-block;
-  background-image: linear-gradient(0deg, #68686e, #e6e0d1, #9c978a);
+.WaitingCard_Border::before {
+  /* background-image: linear-gradient(0deg, #68686e, #e6e0d1, #9c978a); */
+  background-image: url("https://carromco.com/wp-content/uploads/2020/10/83240_Product-Pictues_Bullseye.jpg");
   animation: waitingcard_spin 10s linear infinite;
 }
 

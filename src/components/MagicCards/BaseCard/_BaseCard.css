@@ -1,29 +1,37 @@
-.BaseCard_Card {
-  /* background-color: #1b1f2e; */
-  padding: 2rem;
-  border-radius: 0.5rem;
+.BaseCard_Border {
+  --border-thickness: 2rem;
+  
+  padding: var(--border-thickness);
+
+  display: flex;
+  justify-content: center;
+
   position: relative;
   overflow: hidden;
-  margin: 2rem;
-  margin-top: 1rem;
+
+  border-radius: 0.8rem;
 }
 
-.BaseCard_Card::before {
-  --border-thickness: 2rem;
-
+.BaseCard_Border::before {
   content: "";
-  height: calc(100% + var(--border-thickness));
-  width: calc(100% + var(--border-thickness));
-  border-radius: 0.8rem;
-  
+
+  height: 1500px;
+  width: 1500px;
+
+  align-self: center;
   position: absolute;
-  top: calc(var(--border-thickness) / -2);
-  left: calc(var(--border-thickness) / -2);
+  
   z-index: -999999;
 }
 
+.BaseCard_Content {
+  /* background-color: #1b1f2e; */
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
 @media screen and (min-width: 768px) {
-  .BaseCard_Card::before {
+  .BaseCard_Border::before {
     --border-thickness: 2.75rem;
   }
 }
