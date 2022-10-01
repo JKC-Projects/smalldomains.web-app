@@ -1,4 +1,4 @@
-name: 'CICD - Feature Deployment'
+name: 'CICD - Main Branch Deployment'
 
 on:
   push:
