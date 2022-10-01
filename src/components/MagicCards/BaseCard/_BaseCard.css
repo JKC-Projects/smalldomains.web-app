@@ -1,8 +1,9 @@
 .BaseCard_Card {
-  background-color: #1b1f2e;
+  /* background-color: #1b1f2e; */
   padding: 2rem;
   border-radius: 0.5rem;
   position: relative;
+  overflow: hidden;
   margin: 2rem;
   margin-top: 1rem;
 }

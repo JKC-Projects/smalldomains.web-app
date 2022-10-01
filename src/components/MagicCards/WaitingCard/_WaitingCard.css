@@ -1,14 +1,14 @@
 .WaitingCard_Card::before {
-  --angle: 0deg;
-  background-image: linear-gradient(var(--angle), #68686e, #e6e0d1, #9c978a);
-  animation: spin 10s linear infinite;
+  display: inline-block;
+  background-image: linear-gradient(0deg, #68686e, #e6e0d1, #9c978a);
+  animation: waitingcard_spin 10s linear infinite;
 }
 
-@keyframes spin {
-  0% {
-    --angle: 0deg;
+@keyframes waitingcard_spin {
+  from {
+    transform: rotate(0deg);
   }
-  100% {
-    --angle: 360deg;
+  to {
+    transform: rotate(360deg);
   }
 }
