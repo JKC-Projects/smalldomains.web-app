@@ -1,12 +1,7 @@
 .ErrorCard_Card::before {
+  --angle: 0deg;
   background-image: linear-gradient(var(--angle), #c18672 10%, #e83737, #f70909);
   animation: spin 5s linear infinite;
-}
-
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
 }
 
 @keyframes spin {

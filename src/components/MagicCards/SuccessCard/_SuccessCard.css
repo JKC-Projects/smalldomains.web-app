@@ -1,12 +1,7 @@
 .SuccessCard_Card::before {
+  --angle: 0deg;
   background-image: linear-gradient(var(--angle), #53ed58, #4b8e5c, #68686e);
   animation: spin 5s linear infinite;
-}
-
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
 }
 
 @keyframes spin {
