@@ -3,7 +3,7 @@ import React from 'react'
 import { default as ButtonifiedElement } from './_ButtonifiedElement/_ButtonifiedElement'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 
-import './_SmallDomainsPageHeader.css'
+import './_SmallDomainsPageHeader.module.css'
 
 interface IProps {
   currPage : number,

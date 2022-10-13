@@ -1,12 +1,12 @@
 import React from 'react'
 
-import Header from './components/Header/Header'
-import SmallDomainCreator from './components/SmallDomainCreator'
-import SmallDomainsDisplay from './components/SmallDomainsDisplay'
+import Header from '../src/components/Header'
+import SmallDomainCreator from '../src/components/SmallDomainCreator'
+import SmallDomainsDisplay from '../src/components/SmallDomainsDisplay'
 
-import { getStoredSmallDomains, addListenerOfLocallyStoredSmallDomains } from './api/LocallyStoredSmallDomains'
+import { getStoredSmallDomains, addListenerOfLocallyStoredSmallDomains } from '../src/api/LocallyStoredSmallDomains'
 
-import { SmallDomain } from './types/SmallDomains'
+import { SmallDomain } from '../src/types/SmallDomains'
 
 const useSmallDomainsState = () => {
   const [localSmallDomains, setLocalSmallDomains] = React.useState<SmallDomain[]>(getStoredSmallDomains())

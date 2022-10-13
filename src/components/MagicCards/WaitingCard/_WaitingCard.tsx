@@ -1,6 +1,6 @@
 import React from 'react'
-import '../BaseCard/_BaseCard.css'
-import './_WaitingCard.css'
+import '../BaseCard/_BaseCard.module.css'
+import './_WaitingCard.module.css'
 
 interface IProps {
   children : React.ReactNode

@@ -1,5 +1,5 @@
 import React from 'react'
-import './ErrorMessage.css'
+import './ErrorMessage.module.css'
 
 interface IProps {
   children : React.ReactNode

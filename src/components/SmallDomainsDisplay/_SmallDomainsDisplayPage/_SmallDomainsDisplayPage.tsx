@@ -2,7 +2,7 @@ import React from 'react'
 import { SmallDomain } from '../../../types/SmallDomains'
 import { default as NoSmallDomainInfo } from './_NoSmallDomainInfo/_NoSmallDomainInfo'
 import { default as SmallDomainInfo } from './_SmallDomainInfo/_SmallDomainInfo'
-import './_SmallDomainsDisplayPage.css'
+import './_SmallDomainsDisplayPage.module.css'
 
 interface IProps {
   smallDomains : SmallDomain[],

@@ -18,9 +18,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "preserve",
+    "incremental": true
   },
   "include": [
     "src"
+, "api", "components", "src/types"  ],
+  "exclude": [
+    "node_modules"
   ]
 }

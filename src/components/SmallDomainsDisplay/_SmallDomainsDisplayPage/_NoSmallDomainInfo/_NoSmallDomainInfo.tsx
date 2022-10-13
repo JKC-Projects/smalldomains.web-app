@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './_NoSmallDomainInfo.css'
+import './_NoSmallDomainInfo.module.css'
 
 const _NoSmallDomainInfo : React.FC = () => (
   <div className="SmallDomainInfo p-5">

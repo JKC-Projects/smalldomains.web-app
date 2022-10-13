@@ -6,17 +6,28 @@ const UPDATED_SMALL_DOMAIN_EVENT_NAME = 'updatedSmallDomains'
 const createUpdatedSmallDomainsEvent = () => new Event(UPDATED_SMALL_DOMAIN_EVENT_NAME)
 
 const getStoredSmallDomains  = () : SmallDomain[] => {
-  const stored = localStorage.getItem(SMALL_DOMAIN_KEY)
+  if(typeof window !== undefined) {
+    const stored = localStorage.getItem(SMALL_DOMAIN_KEY)
 
-  if(stored) {
-    return JSON.parse(stored)
+    if(stored) {
+      return JSON.parse(stored)
+    }
+
+    localStorage.setItem(SMALL_DOMAIN_KEY, '[]')
+    return []
   }
 
-  localStorage.setItem(SMALL_DOMAIN_KEY, '[]')
+  // error: if this point reached, then we're not on client-side
+  console.error("detected that we are not being run client-side... so we will not run")
   return []
 }
 
 const storeNewSmallDomain = (toAdd: SmallDomain): void => {
+  if(typeof window === undefined) {
+    console.error("detected that we are not being run client-side... so we will not run")
+    return
+  }
+
   const currStoredSmallDomains = getStoredSmallDomains()
   const newStoredSmallDomains = [
     toAdd, 
@@ -35,6 +46,11 @@ const storeNewSmallDomain = (toAdd: SmallDomain): void => {
 const addListenerOfLocallyStoredSmallDomains = (
   listenerToAdd: (smallDomains: SmallDomain[]) => void
 ) : (() => void) => {
+  if(typeof window === undefined) {
+    console.error("detected that we are not being run client-side... so we will not run")
+    return () => {}
+  }
+
   const eventHandler = (_: Event) => listenerToAdd(getStoredSmallDomains())
   window.addEventListener(UPDATED_SMALL_DOMAIN_EVENT_NAME, eventHandler)
   return () => window.removeEventListener(UPDATED_SMALL_DOMAIN_EVENT_NAME, eventHandler)
