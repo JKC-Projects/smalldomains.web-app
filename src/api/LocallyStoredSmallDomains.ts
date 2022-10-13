@@ -6,7 +6,7 @@ const UPDATED_SMALL_DOMAIN_EVENT_NAME = 'updatedSmallDomains'
 const createUpdatedSmallDomainsEvent = () => new Event(UPDATED_SMALL_DOMAIN_EVENT_NAME)
 
 const getStoredSmallDomains  = () : SmallDomain[] => {
-  if(typeof window !== undefined) {
+  if(typeof window === undefined) {
     const stored = localStorage.getItem(SMALL_DOMAIN_KEY)
 
     if(stored) {
