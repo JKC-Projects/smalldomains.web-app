@@ -1,5 +1,4 @@
 import React from 'react'
-import ErrorMessage from '../ErrorMessage/ErrorMessage'
 
 interface IProps {
   largeDomain : string,
@@ -44,7 +43,7 @@ const _SmallDomainForm : React.FC<IProps> = ({
         errorMessage !== null && 
         <>
           <hr className="mt-7 mb-7"/>
-          <ErrorMessage>{ errorMessage }</ErrorMessage>
+          <div>{ errorMessage }</div>
         </>
       }
   </article>
