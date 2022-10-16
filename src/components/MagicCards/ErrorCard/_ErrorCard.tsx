@@ -1,15 +1,14 @@
 import React from 'react'
-import '../BaseCard/_BaseCard.module.css'
-import './_ErrorCard.module.css'
+import BaseCard from '../BaseCard/_BaseCard'
+
+import styles from './_ErrorCard.module.css'
 
 interface IProps {
   children : React.ReactNode
 }
 
-const _ErrorCard : React.FC<IProps> = ({children}) => <div className="BaseCard_Border ErrorCard_Border">
-  <div className="BaseCard_Content">
-    { children }
-  </div>
-</div>
+const _ErrorCard : React.FC<IProps> = ({children}) => <BaseCard additionalClassNames={`${styles.ErrorCard_Border}`}>
+  { children }
+</BaseCard>
 
 export default _ErrorCard;

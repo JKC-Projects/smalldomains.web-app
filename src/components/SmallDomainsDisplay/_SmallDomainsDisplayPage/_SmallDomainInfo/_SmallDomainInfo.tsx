@@ -2,7 +2,7 @@ import React from 'react'
 import { SmallDomain } from '../../../../types/SmallDomains'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 
-import './_SmallDomainInfo.module.css'
+import styles from './_SmallDomainInfo.module.css'
 
 const FRIENDLY_FORWARDER_URL : string = process.env.NEXT_PUBLIC_SMALL_DOMAINS_FORWARDER_USER_FRIENDLY_URL as string
 
@@ -27,7 +27,7 @@ const {
 } = smallDomainObj
 
   return (
-    <div className={`SmallDomainInfo p-5 ${flashing ? "FlashingSmallDomainInfo" : ""}`}>
+    <div className={`${styles.SmallDomainInfo} p-5 ${flashing ? styles.FlashingSmallDomainInfo : ""}`}>
       <div>
         <u><a className="text-xl text-blue-900" href={`https://${FRIENDLY_FORWARDER_URL}/${smallDomain}`}>{ `${FRIENDLY_FORWARDER_URL}/${smallDomain}` }</a></u>
       </div>

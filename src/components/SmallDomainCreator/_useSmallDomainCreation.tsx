@@ -1,6 +1,6 @@
 import React from 'react'
-import { storeNewSmallDomain } from '../../api/LocallyStoredSmallDomains'
-import { createSmallDomain } from '../../api/SmallDomainsApi'
+import { storeNewSmallDomain } from '../../api/locallyStoredSmallDomains'
+import { createSmallDomain } from '../../api/smallDomainsApi'
 import { SmallDomain } from '../../types/SmallDomains'
 
 const _useSmallDomainCreation = () => {

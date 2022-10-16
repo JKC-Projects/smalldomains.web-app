@@ -3,7 +3,7 @@ import { default as usePages } from './_usePages'
 import { default as SmallDomainsDisplayPage } from './_SmallDomainsDisplayPage/_SmallDomainsDisplayPage'
 import { default as SmallDomainsPageHeader } from './_SmallDomainsPageHeader/_SmallDomainsPageHeader'
 
-import { addListenerOfLocallyStoredSmallDomains } from '../../api/LocallyStoredSmallDomains' 
+import { addListenerOfLocallyStoredSmallDomains } from '../../api/locallyStoredSmallDomains' 
 
 import { SmallDomain } from '../../types/SmallDomains'
 

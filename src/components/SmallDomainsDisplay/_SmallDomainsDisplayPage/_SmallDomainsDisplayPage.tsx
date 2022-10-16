@@ -2,7 +2,7 @@ import React from 'react'
 import { SmallDomain } from '../../../types/SmallDomains'
 import { default as NoSmallDomainInfo } from './_NoSmallDomainInfo/_NoSmallDomainInfo'
 import { default as SmallDomainInfo } from './_SmallDomainInfo/_SmallDomainInfo'
-import './_SmallDomainsDisplayPage.module.css'
+import styles from './_SmallDomainsDisplayPage.module.css'
 
 interface IProps {
   smallDomains : SmallDomain[],
@@ -19,7 +19,7 @@ const _SmallDomainsDisplayPage : React.FC<IProps> = ({
     </li>
 
   return <div>
-      <ul className="PageList">
+      <ul className={styles.PageList}>
       {
         smallDomains.length === 0
           ? <NoSmallDomainInfo />

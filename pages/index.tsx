@@ -4,7 +4,7 @@ import Header from '../src/components/Header'
 import SmallDomainCreator from '../src/components/SmallDomainCreator'
 import SmallDomainsDisplay from '../src/components/SmallDomainsDisplay'
 
-import { getStoredSmallDomains, addListenerOfLocallyStoredSmallDomains } from '../src/api/LocallyStoredSmallDomains'
+import { getStoredSmallDomains, addListenerOfLocallyStoredSmallDomains } from '../src/api/locallyStoredSmallDomains'
 
 import { SmallDomain } from '../src/types/SmallDomains'
 
