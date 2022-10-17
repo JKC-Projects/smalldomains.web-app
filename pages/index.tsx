@@ -9,9 +9,13 @@ import { getStoredSmallDomains, addListenerOfLocallyStoredSmallDomains } from '.
 import { SmallDomain } from '../src/types/SmallDomains'
 
 const useSmallDomainsState = () => {
-  const [localSmallDomains, setLocalSmallDomains] = React.useState<SmallDomain[]>(getStoredSmallDomains())
+  const [localSmallDomains, setLocalSmallDomains] = React.useState<SmallDomain[]>([])
 
-  React.useEffect(() => addListenerOfLocallyStoredSmallDomains(setLocalSmallDomains), [])
+  React.useEffect(() => {
+    const cleanup = addListenerOfLocallyStoredSmallDomains(setLocalSmallDomains)
+    setLocalSmallDomains(getStoredSmallDomains())
+    return cleanup
+  }, [])
 
   return {
     localSmallDomains
