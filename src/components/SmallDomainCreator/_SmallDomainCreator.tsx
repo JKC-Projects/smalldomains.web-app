@@ -10,18 +10,16 @@ const _SmallDomainCreator = () => {
     errorMessage,
     isLoading,
     disabled,
-    doSubmit
+    submitSmallDomainCreateRequest
   } = useSmallDomainCreation();
 
-  const children = <div className="">
-    <SmallDomainForm
-      largeDomain={largeDomain}
-      onLargeDomainChange={setLargeDomain}
-      onSubmit={doSubmit}
-      disabled={disabled}
-      errorMessage={errorMessage}
-    />
-  </div>
+  const children = <SmallDomainForm
+    largeDomain={largeDomain}
+    onLargeDomainChange={setLargeDomain}
+    onSubmit={submitSmallDomainCreateRequest}
+    disabled={disabled}
+    errorMessage={errorMessage}
+  />
 
   if (isLoading) {
     return <LoadingCard>{ children }</LoadingCard>  

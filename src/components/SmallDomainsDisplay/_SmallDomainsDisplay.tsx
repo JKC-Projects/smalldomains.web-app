@@ -3,19 +3,18 @@ import { default as usePages } from './_usePages'
 import { default as SmallDomainsDisplayPage } from './_SmallDomainsDisplayPage/_SmallDomainsDisplayPage'
 import { default as SmallDomainsPageHeader } from './_SmallDomainsPageHeader/_SmallDomainsPageHeader'
 
-import { addListenerOfLocallyStoredSmallDomains } from '../../api/locallyStoredSmallDomains' 
-
 import { SmallDomain } from '../../types/SmallDomains'
+import useLocalSmallDomains from '../Contexts/LocalSmallDomainsContextProvider/_useStoredSmallDomains'
+import { LocalSmallDomainsContext, LocalSmallDomainsManager } from '../Contexts/LocalSmallDomainsContextProvider'
 
 interface IProps {
-  smallDomains : SmallDomain[]
   noDomainsPerPage? : number
 }
 
 const _SmallDomainsDisplay : React.FC<IProps> = ({
-  smallDomains,
   noDomainsPerPage = 5
 }) => {
+  const { smallDomains, hasSmallDomainBeenCreatedAtLeastOnce} : LocalSmallDomainsManager = React.useContext(LocalSmallDomainsContext)
   const {
     currPage,
     lastPage,
@@ -27,14 +26,7 @@ const _SmallDomainsDisplay : React.FC<IProps> = ({
     getCurrElements
   } = usePages<SmallDomain>(smallDomains, noDomainsPerPage)
 
-  const [hasSmallDomainBeenCreatedAtLeastOnce, setHasSmallDomainBeenCreatedAtLeastOnce] = React.useState<boolean>(false)
-
-  React.useEffect(() => {
-    addListenerOfLocallyStoredSmallDomains(() => {
-      goToFirstPage()
-      setHasSmallDomainBeenCreatedAtLeastOnce(true)
-    })
-  })
+  React.useEffect(goToFirstPage, [smallDomains])
 
   return <div className='w-11/12 xl:w-[50vw]'>
     <SmallDomainsPageHeader currPage={currPage} lastPage={lastPage} prevPageEnabled={canGoToPrevPage} nextPageEnabled={canGoToNextPage} onPrevPageClicked={goToPrevPage} onNextPageClicked={goToNextPage}/>
