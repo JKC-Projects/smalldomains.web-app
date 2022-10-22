@@ -1,5 +1,5 @@
-import { SmallDomain } from '../types/SmallDomains'
-import FetchError from './FetchError'
+import { SmallDomain } from '../../types/SmallDomains'
+import FetchError from '../FetchError'
 
 const API_BASE_URL : string = process.env.NEXT_PUBLIC_SMALL_DOMAINS_REST_API_BASE_URL
 const CREATE_SMALL_DOMAIN_URL : string = `${API_BASE_URL}/smalldomains`

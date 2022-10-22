@@ -1,5 +1,5 @@
 import React from 'react'
-import { createSmallDomain } from '../../internetApi/smallDomainsApi'
+import { createSmallDomain } from '../../internetApi/smallDomains/smallDomainsApi'
 import { SmallDomain } from '../../types/SmallDomains'
 import { LocalSmallDomainsContext, LocalSmallDomainsManager } from '../Contexts/LocalSmallDomainsContextProvider'
 

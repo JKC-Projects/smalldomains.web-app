@@ -1,4 +1,5 @@
 import React from 'react'
+import { generateLoginUrl } from '../../webStorageApi/localAuthInProgress'
 
 const Header = () => (
   <header className="sticky w-full top-0 z-50 bg-gray-300 dark:bg-slate-700 shadow-lg p-7">
@@ -15,6 +16,13 @@ const Header = () => (
         <a className="text-sm" href="https://github.com/orgs/JKC-Projects/repositories">Click here to see the source code</a>
       </article>
     </div>
+    <button onClick={() => {
+      const loginUrl : URL = generateLoginUrl()
+      console.log(loginUrl)
+      location.href = loginUrl.toString()
+    }}>
+      Log in
+    </button>
   </header>
 )
 
