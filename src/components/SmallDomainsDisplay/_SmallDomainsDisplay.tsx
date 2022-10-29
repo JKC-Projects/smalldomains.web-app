@@ -4,7 +4,6 @@ import { default as SmallDomainsDisplayPage } from './_SmallDomainsDisplayPage/_
 import { default as SmallDomainsPageHeader } from './_SmallDomainsPageHeader/_SmallDomainsPageHeader'
 
 import { SmallDomain } from '../../types/SmallDomains'
-import useLocalSmallDomains from '../Contexts/LocalSmallDomainsContextProvider/_useStoredSmallDomains'
 import { LocalSmallDomainsContext, LocalSmallDomainsManager } from '../Contexts/LocalSmallDomainsContextProvider'
 
 interface IProps {
@@ -26,7 +25,7 @@ const _SmallDomainsDisplay : React.FC<IProps> = ({
     getCurrElements
   } = usePages<SmallDomain>(smallDomains, noDomainsPerPage)
 
-  React.useEffect(goToFirstPage, [smallDomains])
+  React.useEffect(goToFirstPage, [smallDomains, goToFirstPage])
 
   return <div className='w-11/12 xl:w-[50vw]'>
     <SmallDomainsPageHeader currPage={currPage} lastPage={lastPage} prevPageEnabled={canGoToPrevPage} nextPageEnabled={canGoToNextPage} onPrevPageClicked={goToPrevPage} onNextPageClicked={goToNextPage}/>

@@ -1,7 +1,6 @@
-// TODO provide these as env vars
-const OAUTH2_SERVICE_ORIGIN : string = "https://auth.dev.john-chung.dev"
+const OAUTH2_SERVICE_ORIGIN : string = process.env.NEXT_PUBLIC_OAUTH2_SERVICE_ORIGIN
+const OAUTH2_CLIENT_ID : string = process.env.NEXT_PUBLIC_OAUTH2_CLIENT_ID
 const OAUTH2_TOKEN_ENDPOINT : string = `${OAUTH2_SERVICE_ORIGIN}/oauth2/token`
-const OAUTH2_CLIENT_ID : string = "5h9p83tirpiv89jg1q62dv2mpe"
 
 const COMMON_HEADERS = {
   "Content-type" : "application/x-www-form-urlencoded"
@@ -21,10 +20,11 @@ interface JwtTokens {
 const exchangeAuthCodeForJwtTokens = (
   authCode : string,
   codeVerifier : string,
-  scope : string = "openid",
-  successCallback : (jwtTokens : JwtTokens) => void,
-  errorCallback : () => void = () => {} 
+  successCallback : (jwtTokens : JwtTokens) => void = () => {},
+  errorCallback : () => void = () => {}, 
+  scope : string = "openid"
 ) : void => {
+  console.log(authCode, codeVerifier)
   fetch(OAUTH2_TOKEN_ENDPOINT, {
       ...COMMON_FETCH_OPTIONS,
       headers: COMMON_HEADERS,
@@ -35,7 +35,7 @@ const exchangeAuthCodeForJwtTokens = (
         "scope" : scope,
         "client_id" : OAUTH2_CLIENT_ID,
         "grant_type": "authorization_code",
-        "redirect_uri": "redirect_uri"
+        "redirect_uri": new URL(window.location.href).origin + "/auth/JwtTokens"
       })
     })
     .then(response => response.json())

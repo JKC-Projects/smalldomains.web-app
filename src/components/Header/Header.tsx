@@ -17,9 +17,7 @@ const Header = () => (
       </article>
     </div>
     <button onClick={() => {
-      const loginUrl : URL = generateLoginUrl()
-      console.log(loginUrl)
-      location.href = loginUrl.toString()
+      window.location.href = generateLoginUrl().toString()
     }}>
       Log in
     </button>

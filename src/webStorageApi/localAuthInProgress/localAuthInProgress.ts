@@ -1,14 +1,13 @@
 import crypto from 'crypto'
 import { areWeRunningOnClientSide } from "../../internetApi/utils"
 
-// TODO use env vars instead
-const OAUTH2_SERVICE_ORIGIN : string = "https://auth.dev.john-chung.dev"
-const OAUTH2_CLIENT_ID : string = "5h9p83tirpiv89jg1q62dv2mpe"
+const OAUTH2_SERVICE_ORIGIN : string = process.env.NEXT_PUBLIC_OAUTH2_SERVICE_ORIGIN
+const OAUTH2_CLIENT_ID : string = process.env.NEXT_PUBLIC_OAUTH2_CLIENT_ID
 
 const AUTH_IN_PROGRESS_KEY = "authInProgress"
 
 interface AuthInProgress {
-  plainTextCodeVerifierBytes : Uint8Array
+  codeVerifier : string
   stateForCsrfProtection : string
 }
 
@@ -23,10 +22,10 @@ function generateSecureRandomBytes(length:number=32) : Uint8Array {
   return crypto.randomBytes(length)
 }
 
-function generateHash(plainTextCodeVerifierBytes : Uint8Array) : string {
+function generateHash(codeVerifier : string) : string {
   return base64ToBase64Url(
     crypto.createHash("sha256")
-    .update(plainTextCodeVerifierBytes)
+    .update(codeVerifier)
     .digest("base64")
   )
 }
@@ -57,20 +56,18 @@ function generateOauth2CodeChallengeAndState() : {codeChallenge : string, stateF
   // generate stateForCsrfProtection
   const stateForCsrfProtection = (() => {
     const secureRandomBytes : Uint8Array = generateSecureRandomBytes()
-    return base64ToBase64Url(
-      Buffer.from(secureRandomBytes).toString('base64')
-    )
+    return base64ToBase64Url(Buffer.from(secureRandomBytes).toString('base64'))
   })()
 
   // store plaintext secure random bytes in localStorage
-  const plainTextCodeVerifierBytes : Uint8Array = generateSecureRandomBytes()
+  const codeVerifier : string = base64ToBase64Url(Buffer.from(generateSecureRandomBytes()).toString('base64'))
 
   // create the SHA256 of these secure random bytes
-  const codeChallenge = generateHash(plainTextCodeVerifierBytes)
+  const codeChallenge = generateHash(codeVerifier)
 
   // add this SHA256 to the query params of the login URL somehow
   localStorage.setItem(AUTH_IN_PROGRESS_KEY, JSON.stringify({
-    plainTextCodeVerifierBytes,
+    codeVerifier,
     stateForCsrfProtection
   }))
 
@@ -82,6 +79,10 @@ function generateOauth2CodeChallengeAndState() : {codeChallenge : string, stateF
 }
 
 function getCodeVerifier() : string | null {
+  if(areWeRunningOnClientSide() === false) {
+    throw new Error("detected that we are not being run client-side... so we will not run")
+  }
+
   const unparsedAuthInProgress : string | null = localStorage.getItem(AUTH_IN_PROGRESS_KEY)
 
   if(unparsedAuthInProgress === null) {
@@ -89,10 +90,14 @@ function getCodeVerifier() : string | null {
   }
 
   const authInProgress : AuthInProgress = JSON.parse(unparsedAuthInProgress) as AuthInProgress
-  return Buffer.from(authInProgress.plainTextCodeVerifierBytes).toString('base64url')
+  return authInProgress.codeVerifier
 }
 
 function doesStateForCsrfProtectionMatch(stateForCsrfProtection : string) : boolean {
+  if(areWeRunningOnClientSide() === false) {
+    throw new Error("detected that we are not being run client-side... so we will not run")
+  }
+
   const unparsedAuthInProgress : string | null = localStorage.getItem(AUTH_IN_PROGRESS_KEY)
 
   if(unparsedAuthInProgress === null) {
