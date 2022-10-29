@@ -59,7 +59,7 @@ jobs:
     - name: Set-Up Environment Variables for React App Building
       run: |
         set -o pipefail
-        NEXT_PUBLIC_OAUTH2_SERVICE_ORIGIN=$(aws ssm get-parameter --name /cognito/cross-project--users/smalldomains/web-app/client-id --with-decryption | jq -r '.Parameter.Value')
+        NEXT_PUBLIC_OAUTH2_SERVICE_ORIGIN=$(aws ssm get-parameter --name /cognito/cross-project--users/hosted-ui/origin --with-decryption | jq -r '.Parameter.Value')
         NEXT_PUBLIC_OAUTH2_CLIENT_ID=$(aws ssm get-parameter --name /cognito/cross-project--users/smalldomains/web-app/client-id --with-decryption | jq -r '.Parameter.Value')
         
         echo "NEXT_PUBLIC_OAUTH2_SERVICE_ORIGIN=$NEXT_PUBLIC_OAUTH2_SERVICE_ORIGIN" >> $GITHUB_ENV
