@@ -10,6 +10,9 @@ on:
       TF_API_TOKEN:
         required: true
 
+env:
+  AWS_REGION: eu-west-1
+
 # Required to use GitHub OIDC Token with AWS
 permissions:
   id-token: write
@@ -54,5 +57,6 @@ jobs:
     uses: ./.github/workflows/deploy_web_app.yml
     with:
       environment: ${{ inputs.environment }}
+      aws-region: ${{ env.AWS_REGION }}
       node-version: ${{ needs.setup-constant-variables.outputs.node-version }}
       yarn-version: ${{ needs.setup-constant-variables.outputs.yarn-version }}
