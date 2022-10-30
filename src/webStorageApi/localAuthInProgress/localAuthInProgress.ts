@@ -59,14 +59,14 @@ function generateOauth2CodeChallengeAndState() : {codeChallenge : string, stateF
     return base64ToBase64Url(Buffer.from(secureRandomBytes).toString('base64'))
   })()
 
-  // store plaintext secure random bytes in localStorage
+  // store plaintext secure random bytes in sessionStorage
   const codeVerifier : string = base64ToBase64Url(Buffer.from(generateSecureRandomBytes()).toString('base64'))
 
   // create the SHA256 of these secure random bytes
   const codeChallenge = generateHash(codeVerifier)
 
   // add this SHA256 to the query params of the login URL somehow
-  localStorage.setItem(AUTH_IN_PROGRESS_KEY, JSON.stringify({
+  sessionStorage.setItem(AUTH_IN_PROGRESS_KEY, JSON.stringify({
     codeVerifier,
     stateForCsrfProtection
   }))
@@ -83,7 +83,7 @@ function getCodeVerifier() : string | null {
     throw new Error("detected that we are not being run client-side... so we will not run")
   }
 
-  const unparsedAuthInProgress : string | null = localStorage.getItem(AUTH_IN_PROGRESS_KEY)
+  const unparsedAuthInProgress : string | null = sessionStorage.getItem(AUTH_IN_PROGRESS_KEY)
 
   if(unparsedAuthInProgress === null) {
     return null
@@ -98,7 +98,7 @@ function doesStateForCsrfProtectionMatch(stateForCsrfProtection : string) : bool
     throw new Error("detected that we are not being run client-side... so we will not run")
   }
 
-  const unparsedAuthInProgress : string | null = localStorage.getItem(AUTH_IN_PROGRESS_KEY)
+  const unparsedAuthInProgress : string | null = sessionStorage.getItem(AUTH_IN_PROGRESS_KEY)
 
   if(unparsedAuthInProgress === null) {
     return false
@@ -109,7 +109,7 @@ function doesStateForCsrfProtectionMatch(stateForCsrfProtection : string) : bool
 }
 
 function resetAuthInProgress() : void {
-  localStorage.removeItem(AUTH_IN_PROGRESS_KEY)
+  sessionStorage.removeItem(AUTH_IN_PROGRESS_KEY)
 }
 
 
