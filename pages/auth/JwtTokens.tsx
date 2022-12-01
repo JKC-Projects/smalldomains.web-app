@@ -13,11 +13,9 @@ const RetrieveJwtTokensPage = () => {
     if(!router.isReady) return;
     const authCode : string = router.query.code as string
     const stateForCsrfProtectionMatch : string = router.query.state as string
-    console.log(authCode, stateForCsrfProtectionMatch)
     if(doesStateForCsrfProtectionMatch(stateForCsrfProtectionMatch) == false) {
       console.error("state does not match!!", stateForCsrfProtectionMatch)
     }
-    
     const codeVerifier : string = getCodeVerifier() as string
     exchangeAuthCodeForJwtTokens(authCode, codeVerifier, console.log, console.log)
   }, [router.isReady])
